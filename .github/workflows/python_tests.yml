@@ -19,13 +19,17 @@ jobs:
       with:
         python-version: 3.x
     
-    # Step 3: Install dependencies from requirements.txt
+    # Step 3: Install dependencies from requirements.txt if it exists
     - name: Install dependencies
       run: |
-        # Upgrade pip and install required packages from requirements.txt
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    
+        if [ -f "requirements.txt" ]; then
+            # Upgrade pip and install required packages from requirements.txt
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+        else
+            echo "No requirements.txt file found. Skipping installation of dependencies."
+        fi
+        
     # Step 4: Run tests using unittest
     - name: Run tests
       run: |
