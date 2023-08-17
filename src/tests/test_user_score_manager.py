@@ -2,7 +2,7 @@ import unittest
 import sqlite3
 import os
 import bcrypt
-from user_score_manager import UserScoreManager
+from src.backend.user_score_manager import UserScoreManager
 
 class TestUserScoreManager(unittest.TestCase):
     def setUp(self):
