@@ -8,6 +8,8 @@ def game(username):
     guess_count = 0
     random_integer = get_random_number()
     while running:
+        # running game should be handled by front end
+        # outsource comparison of user input against random number
         guess = get_user_input()
         if guess == random_integer:
             has_won = True
