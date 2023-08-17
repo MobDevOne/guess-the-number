@@ -1,15 +1,14 @@
+import { Box } from '@mui/material';
 import './App.css';
+import { Header } from './layout/Header';
+import { Login } from './layout/Login';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src='../public/MobDevOne192.png' className="App-logo" alt="logo" />
-        <p>
-          Hier könnte unsere Seite sein 
-        </p>
-      </header>
-    </div>
+    <Box className="mainMenu">
+      <Header/>
+      <Login/>
+    </Box>
   );
 }
 
