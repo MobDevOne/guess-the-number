@@ -1,28 +1,13 @@
 import {
   AppBar,
-  IconButton,
-  InputAdornment,
-  Menu,
-  MenuItem,
   Stack,
   Toolbar,
   Typography,
 } from "@mui/material";
 import icon from "../pictures/MobDevOne192.png";
-import { useState } from "react";
 import AccountMenu from "../components/AccountMenu";
 
 export function Header() {
-
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
 
   return (
     <AppBar position="static" className="header" sx={{ bgcolor: "#262626" }}>

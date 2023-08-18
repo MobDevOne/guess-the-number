@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, IconButton, InputAdornment, Link, Stack, TextField, Typography } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useState } from "react";
@@ -17,7 +17,7 @@ export function Login() {
     };
 
     const getUserCredentials = () => {
-        window.location.href = "/username/game"
+        window.location.href = "username"
     }
 
     return (
@@ -41,9 +41,9 @@ export function Login() {
                 <Button variant="contained" onClick={getUserCredentials} sx={{ textTransform: 'none', fontFamily: 'QuinqueFive', fontSize: 10 }}>
                     Log in
                 </Button>
-                <Button variant="text" href="/register" sx={{ textTransform: 'none', fontFamily: 'QuinqueFive', fontSize: 8 }}>
+                <Link href="/register" sx={{ fontFamily: 'QuinqueFive', fontSize: 8 }}>
                     Not registered yet? create an account
-                </Button>
+                </Link>
             </Stack>
         </Box>
     );
