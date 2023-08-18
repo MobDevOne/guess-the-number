@@ -1,13 +1,15 @@
 import { Box } from '@mui/material';
-import './App.css';
 import { Header } from './layout/Header';
-import { Login } from './layout/Login';
+import { RouterProvider } from 'react-router-dom';
+import './App.css';
+import routes from './routes';
 
 function App() {
+
   return (
     <Box className="mainMenu">
       <Header/>
-      <Login/>
+      <RouterProvider router={routes}/>
     </Box>
   );
 }

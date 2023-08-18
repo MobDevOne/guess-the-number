@@ -1,27 +1,47 @@
-import { Box, Button, Stack, TextField, Typography, autocompleteClasses } from "@mui/material";
+import { Box, Button, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useState } from "react";
 
 export function Login() {
 
-    const getUserCredentials = () => {
+    const [showPassword, setShowPassword] = useState(false);
+    const [password, setPassword] = useState('');
 
+    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value);
+    };
+
+    const handleTogglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const getUserCredentials = () => {
+        window.location.href = "/username/game"
     }
 
-    return(
+    return (
         <Box >
-            <Stack className="login" direction="column" spacing={"8px"} sx={{maxWidth: '400px', mt: '100px', justifyContent: 'center'}}>
-                <Typography textAlign="center">
-                    Welcome to Guess The Number <br/> by MobDevOne
-                </Typography>
-                <TextField label="Username" variant="outlined">
-                    Username
-                </TextField>
-                <TextField label="Password" variant="outlined">
-                    Password
-                </TextField>
-                <Button variant="contained" onClick={getUserCredentials}>
+            <Typography textAlign="center" sx={{ mt: '75px', fontFamily: 'QuinqueFive', fontSize: 20 }}>
+                Welcome to "Guess The Number" <br /> by MobDevOne
+            </Typography>
+            <Stack className="login" direction="column" spacing={"16px"} sx={{ width: 'fit-content', mt: '75px', alignItems: 'center' }}>
+                <TextField label="Username" autoComplete="off" variant="outlined" sx={{ width: '15em' }}/>
+                <TextField label="Password" autoComplete="off" type={showPassword ? 'text' : 'password'} value={password} onChange={handlePasswordChange} sx={{ width: '15em' }}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton onClick={handleTogglePasswordVisibility} edge="end">
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
+                />
+                <Button variant="contained" onClick={getUserCredentials} sx={{ textTransform: 'none', fontFamily: 'QuinqueFive', fontSize: 10 }}>
                     Log in
                 </Button>
-                <Button variant="text" href="/register">
+                <Button variant="text" href="/register" sx={{ textTransform: 'none', fontFamily: 'QuinqueFive', fontSize: 8 }}>
                     Not registered yet? create an account
                 </Button>
             </Stack>

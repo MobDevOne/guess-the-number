@@ -5,10 +5,29 @@
 
 .header {
   display: flex;
+  width: 100%;
   max-height: 64px;
   font-family: 'ForeignAlien';
 }
 
 hr{
   margin: 1em;
+}
+
+.login{
+  width: fit-content;
+  margin: auto;
+}
+
+.MuiInputLabel-root {
+  font-family: 'QuinqueFive' !important;
+  font-size: xx-small !important;
+}
+
+.gamePage {
+  background-image: url('../public/Background\ Sunset.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
 }
