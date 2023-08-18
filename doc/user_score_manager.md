@@ -44,9 +44,7 @@ Before using the User Score Manager in the Guess-The-Number project, ensure you 
 
 1. Import the necessary libraries and classes:
    ```python
-   import sqlite3
-   import uuid
-   import bcrypt
+   import https://github.com/ErebosGoD/guess-the-number/src/backend/user_score_manager.py
    ```
 
 2. Create an instance of the `UserScoreManager` class within the context of the Guess-The-Number project:
