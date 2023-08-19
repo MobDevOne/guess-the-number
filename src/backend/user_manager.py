@@ -3,7 +3,8 @@ import uuid
 import bcrypt
 
 class User:
-    def __init__(self, user_id, name, hashed_password):
+    def __init__(self, conn, user_id, name, hashed_password):
+        self.conn = conn
         self.id = user_id
         self.name = name
         self.hashed_password = hashed_password
@@ -15,7 +16,7 @@ class User:
                 UPDATE scores
                 SET score = ?
                 WHERE user_id = ?
-            ''', (score, self.user_id))
+            ''', (score, self.id))
 
     def get_score(self):
         # Retrieve user's score from the 'scores' table
@@ -24,7 +25,7 @@ class User:
                 SELECT score
                 FROM scores
                 WHERE user_id = ?
-            ''', (self.user_id,))
+            ''', (self.id,))
             row = cursor.fetchone()
             if row:
                 return row[0]
@@ -87,39 +88,33 @@ class UserManager:
                 VALUES (?, ?)
             ''', (user_id, 0))
 
-        return User(user_id, name, hashed_password)
+        return User(self.conn, user_id, name, hashed_password)
     
     def remove_user(self, name):
         with self.conn:
-            # Check if the username already exists
-            cursor = self.conn.execute('''
-                SELECT id
-                FROM users
+            # Check if the username exists and get user_id
+            user_id = self._get_user_id(name)
+            
+            # Delete user from 'users' table and the corresponding score in 'scores' table
+            self.conn.execute('''
+                DELETE FROM users 
                 WHERE name = ?
             ''', (name,))
-            existing_user = cursor.fetchone()
-            user_id = existing_user[0]
-            if existing_user:
-                # Delete user from 'users' table and the corresponding score in 'scores' table
-                self.conn.execute('''
-                    DELETE FROM users 
-                    WHERE name = ?
-                ''', (name,))
-                
-                self.conn.execute('''
-                    DELETE FROM scores 
-                    WHERE user_id = ?
-                ''', (user_id, 0))
-            else:
-                raise ValueError("user "+ name +" does not exist")
-    
+            
+            self.conn.execute('''
+                DELETE FROM scores 
+                WHERE user_id = ?
+            ''', (user_id,))
+            
+            return True
+            
     def log_in_user(self, username, password) -> User:
         # Returns User if the credentials are correct
         if self._verify_username(username):
             # password is checked if user exists
             user_id = self._get_user_id(username)
             if self._verify_password(user_id, password):
-                return User(user_id, username, password)
+                return User(self.conn, user_id, username, password)
             else:
                 raise ValueError("password is incorrect")
         else:
