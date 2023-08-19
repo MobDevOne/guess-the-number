@@ -39,5 +39,5 @@ jobs:
     # Step 4: Run tests using unittest
     - name: Run tests
       run: |
-        # Run all unit tests with a filename pattern *_test.py in the current directory and its subdirectories
-        python -m unittest discover -s . -p '*_test.py'
+        # Run all unit tests with a filename pattern test_*.py in the src/tests/ directory
+        python3 -m unittest discover -s src/tests/ -p 'test_*.py'
