@@ -2,13 +2,13 @@ import unittest
 import sqlite3
 import os
 import bcrypt
-from src.backend.user_score_manager import UserScoreManager
+from backend.user_manager import UserManager
 
-class TestUserScoreManager(unittest.TestCase):
+class TestUserManager(unittest.TestCase):
     def setUp(self):
-        # Set up a test database and a UserScoreManager instance for testing
+        # Set up a test database and a UserManager instance for testing
         self.db_name = "test_user_scores.db"
-        self.score_manager = UserScoreManager(self.db_name)
+        self.score_manager = UserManager(self.db_name)
 
     def tearDown(self):
         # Close the database connection and remove the test database file

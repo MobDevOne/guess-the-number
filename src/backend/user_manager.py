@@ -8,7 +8,7 @@ class User:
         self.name = name
         self.hashed_password = hashed_password
 
-class UserScoreManager:
+class UserManager:
     def __init__(self, db_name):
         # Establish a connection to the SQLite database
         self.conn = sqlite3.connect(db_name)
@@ -108,7 +108,7 @@ class UserScoreManager:
 
 if __name__ == "__main__":
     db_name = "user_scores.db"
-    score_manager = UserScoreManager(db_name)
+    score_manager = UserManager(db_name)
 
     # Close the database connection
     score_manager.conn.close()
