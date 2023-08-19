@@ -2,7 +2,7 @@ import unittest
 import sqlite3
 import os
 import bcrypt
-from user_manager import UserManager
+from src.backend.user_manager import UserManager
 
 class TestUserManager(unittest.TestCase):
     def setUp(self):

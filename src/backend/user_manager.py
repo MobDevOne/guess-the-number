@@ -118,7 +118,7 @@ class UserManager:
             else:
                 raise ValueError("password is incorrect")
         else:
-            raise ValueError("user " + username + " does not exist")
+            raise ValueError(f"user {username} does not exist")
         
     def _hash_password(self, password):
         # Generate a salt, hash the password, and return the hashed result
@@ -168,41 +168,4 @@ class UserManager:
                 user_id = row [0]
                 return user_id
             else:
-                raise ValueError("user " + username + " does not exist")
-
-""" 
-    # EXAMPLE USAGE
-
-    # USER MANAGEMENT
-
-    # initialize score_manager
-    # this step creates a connection to the given database
-    db_name = "user_scores.db"
-    score_manager = UserManager(db_name)
-
-    # Close the database connection
-    score_manager.close()
-    
-    # Create two sample users
-    user1 = user_manager.create_user("username1", "pass123")
-    user2 = user_manager.create_user("username2", "secure456")
-
-    # Delete a user
-    user_manager.remove_user("usernamex")
-
-    # Login / get user data
-    user1 = user_manager.log_in_user("username1", "password")
-    user2 = user_manager.log_in_user("username2", "password")
-
-    
-    # SCORES
-
-    # Update and retrieve scores
-    user1.update_score(100)
-    user2.update_score(150)
-
-    # Print user scores
-    print(f"{user1.name}'s Score: {user1.get_score()}")
-    print(f"{user2.name}'s Score: {user2.get_score()}") 
-"""
-    
+                raise ValueError(f"user {username} does not exist")
