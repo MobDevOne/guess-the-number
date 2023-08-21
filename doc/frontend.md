@@ -6,7 +6,7 @@ cd src/frontend //this directs you to the frontend directory.
 npm install //installs all node dependecies that the frontend needs.
 npm start //runs the app in the development mode.
 ```
-it is important that you dont run the "npm install" command inside of the src/frontend
+it is important that you dont run the "npm install" command outside of the src/frontend
 otherwise it will install all 30.000+ dependencies at the wrong place
 
 ## Available Scripts
