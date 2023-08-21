@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'ForeignAlien';
+  src: local('ForeignAlien'),
+       url('./fonts/ForeignAlien/foreignalien.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'QuinqueFive';
+  src: local('QuinqueFive'),
+       url('./fonts/QuinqueFive/Quinquefive.ttf') format('truetype');
+}
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'ForeignAlien', QuinqueFive,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', 'ForeignAlien', 'QuinqueFive',
+    monospace;
+}
+
