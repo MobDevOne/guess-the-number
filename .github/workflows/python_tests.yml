@@ -1,0 +1,43 @@
+name: Python Tests
+
+# Defines when the workflow should be triggered (on push events)
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    # Defines the type of runner (GitHub-hosted runner)
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Step 1: Check out the repository code
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    # Step 2: Set up Python environment
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.x
+    
+    # Step 3: Install dependencies from requirements.txt if it exists
+    - name: Install dependencies
+      run: |
+        if [ -f "requirements.txt" ]; then
+            # Upgrade pip and install required packages from requirements.txt
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+        else
+            echo "No requirements.txt file found. Skipping installation of dependencies."
+        fi
+        
+    # Step 4: Run tests using unittest
+    - name: Run tests
+      run: |
+        # Run all unit tests with a filename pattern test_*.py in the src/tests/ directory
+        python3 -m unittest discover -s src/tests/ -p 'test_*.py'
