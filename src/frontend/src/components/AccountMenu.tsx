@@ -10,6 +10,9 @@ import { AccountCircle, Info } from '@mui/icons-material';
 
 
 export default function AccountMenu() {
+
+    const checkLocation = window.location.pathname.startsWith('/username')
+
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -28,7 +31,7 @@ export default function AccountMenu() {
         window.location.href = "/"
     }
 
-    return (
+    return checkLocation ? (
         <>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                 <Tooltip title="Account settings">
@@ -66,5 +69,7 @@ export default function AccountMenu() {
                 </MenuItem>
             </Menu>
         </>
+    ) : (
+        <></>
     );
 }

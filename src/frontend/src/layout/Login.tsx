@@ -38,7 +38,7 @@ export function Login() {
                         ),
                     }}
                 />
-                <Button variant="contained" onClick={getUserCredentials} sx={{ textTransform: 'none', fontFamily: 'QuinqueFive', fontSize: 10 }}>
+                <Button variant="contained" onClick={getUserCredentials} sx={{ fontFamily: 'QuinqueFive', fontSize: 10 }}>
                     Log in
                 </Button>
                 <Link href="/register" sx={{ fontFamily: 'QuinqueFive', fontSize: 8 }}>

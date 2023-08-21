@@ -23,8 +23,8 @@ export const NavBar = () => {
     }, [currentLocation])
 
     return checkLocation ? ( 
-        <Box display="flex" justifyContent="center" >
-            <Tabs className="navbar" value={tabValue} sx={{justifyContent: 'center'}}>
+        <Box className="navbar" display="flex" justifyContent="center" >
+            <Tabs value={tabValue} sx={{justifyContent: 'center', fontSize: 10, fontFamily: 'QuinqueFive'}}>
                 <Tab component={Link} to="username" label="Home" value="username"/>
                 <Tab component={Link} to="username/game" label="Game" value="game"/>
                 <Tab component={Link} to="username/high-scores" label="High-Scores" value="high-scores"/>
