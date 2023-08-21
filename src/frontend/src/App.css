@@ -24,18 +24,10 @@ hr{
   font-size: xx-small !important;
 }
 
-.homePage {
-  background-image: url('../public/Background\ Evening.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-.gamePage {
-  background-image: url('../public/Background\ Sunset.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
+.navbar {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: auto;
+  padding-right: auto;
+  justify-content: center;
 }

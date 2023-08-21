@@ -4,7 +4,7 @@ export const HighScorePage = () => {
 
     return (
         <Box>
-            
+            <h1>Hello </h1>
         </Box>
     )
 }
