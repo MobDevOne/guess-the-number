@@ -2,7 +2,7 @@ import unittest
 import os
 from src.backend.user_manager import UserManager
 
-class TestUserManager(unittest.TestCase):
+class TestUser(unittest.TestCase):
     def setUp(self):
         # Set up a test database and a UserManager instance for testing
         self.db_name = "test_user_scores.db"
