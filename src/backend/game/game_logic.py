@@ -27,13 +27,18 @@ class GameManager():
     def __init__(self) -> None:
         # set start score to 1000
         self.start_score = 1000
-    
+
     def calculate_highscore(self, guess_count):
         # using "max" to compare the guess_count to 0 so if the score is negative (meaning the player took to many attempts) he just gets 0 points
         self.highscore = max(self.start_score - 2**(guess_count - 1), 0)
         return self.highscore
-    
+
     def get_random_number(self):
         return random.randint(1, 100)
-    
-    
+
+    def compare_guess_to_random_integer(self, guess, random_integer):
+        if guess > random_integer:
+            pass
+        elif guess < random_integer:
+            pass
+        pass
