@@ -43,22 +43,21 @@ class UserManager:
             if existing_user:
                 raise ValueError("username already exists")
 
-            # Generate a unique user ID and hash the password
+            # Generate a unique user ID
             user_id = str(uuid.uuid4())[:8]
-            hashed_password = self._hash_password(password)
             
             # Insert user into 'users' table and initialize score in 'scores' table
             self.conn.execute('''
                 INSERT INTO users (id, name, password)
                 VALUES (?, ?, ?)
-            ''', (user_id, name, hashed_password))
+            ''', (user_id, name, password))
             
             self.conn.execute('''
                 INSERT INTO scores (user_id, score)
                 VALUES (?, ?)
-            ''', (user_id, 0))
+            ''', (user_id, 1000))
 
-        return User(self.conn, user_id, name, hashed_password)
+        return User(self.conn, user_id, name, password)
     
     def remove_user(self, name):
         with self.conn:
@@ -78,7 +77,7 @@ class UserManager:
             
             return True
      
-    def _verify_username(self, username):
+    def verify_username(self, username):
         # Check if given username exists
         with self.conn:
             cursor = self.conn.execute('''
@@ -106,3 +105,22 @@ class UserManager:
                 return user_id
             else:
                 raise ValueError(f"user {username} does not exist")
+            
+    def get_hashed_password(self, username):
+        with self.conn:
+            cursor = self.conn.execute('''
+                SELECT password
+                FROM users
+                WHERE name = ?                           
+            ''', (username,))
+            row = cursor.fetchone()
+            if row:
+                hashed_password = row [0]
+                return hashed_password
+            else:
+                raise ValueError(f"user {username} does not exist")
+
+    def get_user(self, username):
+        user_id = self._get_user_id(username)
+        password = self.get_hashed_password(username)
+        return User(self.conn, user_id, username, password)
