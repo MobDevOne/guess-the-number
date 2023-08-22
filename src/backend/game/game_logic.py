@@ -1,5 +1,4 @@
-from get_random_number import get_random_number
-from get_user_input import get_user_input
+import random
 
 # obsolete
 """ def game(username):
@@ -25,4 +24,16 @@ from get_user_input import get_user_input
 
 
 class GameManager():
-    pass
+    def __init__(self) -> None:
+        # set start score to 1000
+        self.start_score = 1000
+    
+    def calculate_highscore(self, guess_count):
+        # using "max" to compare the guess_count to 0 so if the score is negative (meaning the player took to many attempts) he just gets 0 points
+        self.highscore = max(self.start_score - 2**(guess_count - 1), 0)
+        return self.highscore
+    
+    def get_random_number(self):
+        return random.randint(1, 100)
+    
+    
