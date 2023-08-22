@@ -1,8 +1,8 @@
 from get_random_number import get_random_number
 from get_user_input import get_user_input
 
-
-def game(username):
+# obsolete
+""" def game(username):
     running = True
     has_won = False
     guess_count = 0
@@ -18,4 +18,11 @@ def game(username):
         elif guess > random_integer:
             return username, guess_count, has_won, "Try lower"
         elif guess < random_integer:
-            return username, guess_count, has_won, "Try higher"
+            return username, guess_count, has_won, "Try higher" """
+
+# TODO Create GameManager class that has methods for number comparison and data persistence
+# TODO Remove other .py files
+
+
+class GameManager():
+    pass
