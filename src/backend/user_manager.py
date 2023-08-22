@@ -1,36 +1,6 @@
 import sqlite3
 import uuid
-import bcrypt
-
-class User:
-    def __init__(self, conn, user_id, name, hashed_password):
-        self.conn = conn
-        self.id = user_id
-        self.name = name
-        self.hashed_password = hashed_password
-
-    def update_score(self, score):
-        # Update user's score in the 'scores' table
-        with self.conn:
-            self.conn.execute('''
-                UPDATE scores
-                SET score = ?
-                WHERE user_id = ?
-            ''', (score, self.id))
-
-    def get_score(self):
-        # Retrieve user's score from the 'scores' table
-        with self.conn:
-            cursor = self.conn.execute('''
-                SELECT score
-                FROM scores
-                WHERE user_id = ?
-            ''', (self.id,))
-            row = cursor.fetchone()
-            if row:
-                return row[0]
-            else:
-                return None
+from src.backend.user import User
 
 class UserManager:
     def __init__(self, db_name):
@@ -107,40 +77,7 @@ class UserManager:
             ''', (user_id,))
             
             return True
-            
-    def log_in_user(self, username, password) -> User:
-        # Returns User if the credentials are correct
-        if self._verify_username(username):
-            # password is checked if user exists
-            user_id = self._get_user_id(username)
-            if self._verify_password(user_id, password):
-                return User(self.conn, user_id, username, password)
-            else:
-                raise ValueError("password is incorrect")
-        else:
-            raise ValueError(f"user {username} does not exist")
-        
-    def _hash_password(self, password):
-        # Generate a salt, hash the password, and return the hashed result
-        salt = bcrypt.gensalt()
-        hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
-        return hashed.decode('utf-8')
-
-    def _verify_password(self, user_id, password):
-        with self.conn:
-            # Retrieve hashed password from the 'users' table and compare with provided password
-            cursor = self.conn.execute('''
-                SELECT password
-                FROM users
-                WHERE id = ?
-            ''', (user_id,))
-            row = cursor.fetchone()
-            if row:
-                hashed_password = row[0]
-                return bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8'))
-            else:
-                return False
-            
+     
     def _verify_username(self, username):
         # Check if given username exists
         with self.conn:

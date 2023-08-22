@@ -47,21 +47,6 @@ class TestUserManager(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.user_manager.create_user("TestUser", "anotherpass")
 
-    def test_verify_credentials(self):
-        # Test verifying user and password
-        user = self.user_manager.create_user("TestUser", "testpass")
-        self.assertTrue(self.user_manager.log_in_user(user.name, "testpass"))
-        with self.assertRaises(ValueError):
-            self.assertTrue(self.user_manager.log_in_user(user.name, "wrongpass"))
-        with self.assertRaises(ValueError):
-            self.assertTrue(self.user_manager.log_in_user("WrongTestUser", "testpass"))
-
-    def test_score_operations(self):
-        # Test updating and retrieving user scores
-        user = self.user_manager.create_user("TestUser", "testpass")
-        user.update_score(100)
-        self.assertEqual(user.get_score(), 100)
-
     def test_sql_injection_safety(self):
         # Test SQL injection safety by attempting a malicious username
         malicious_name = "TestUser'; DROP TABLE users; --"
