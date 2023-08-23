@@ -1,5 +1,6 @@
 from flask import Flask, request
-from backend.user_manager import User, UserManager
+from backend.user_manager import UserManager
+from backend.user import User
 app = Flask(__name__)
 
 
