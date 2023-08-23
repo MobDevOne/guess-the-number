@@ -32,3 +32,13 @@ hr{
   margin-top: -50px;
   margin-left: -250px;
 }
+
+.successText {
+  text-align: center;
+  color: green
+}
+
+.errorText {
+  text-align: center;
+  color: red
+}

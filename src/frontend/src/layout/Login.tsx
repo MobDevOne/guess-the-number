@@ -1,14 +1,22 @@
 import { Box, Button, IconButton, InputAdornment, Link, Stack, TextField, Typography } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { useState } from "react";
+import React, { useState } from "react";
+import { LoginApi } from "../apis/LoginApi";
+import { ErrorHandling } from "../components/ErrorHandling";
 
 export function Login() {
 
-    const [showPassword, setShowPassword] = useState(false);
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [httpStatusCode, setHttpStatusCode] = useState<number>()
 
-    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const getUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUsername(event.target.value);
+    };
+
+    const getPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
     };
 
@@ -16,9 +24,22 @@ export function Login() {
         setShowPassword(!showPassword);
     };
 
-    const getUserCredentials = () => {
-        window.location.href = "username"
-    }
+    const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
+        setHttpStatusCode(undefined)
+        LoginApi(username, password)(e)
+            .then(async (response) => {
+                return response.SessionToken
+            }).then((sessionToken) => {
+                localStorage.setItem('', JSON.stringify([{
+                    username: username,
+                    sessionToken: sessionToken
+                }]));
+                setUsername('')
+                setPassword('')
+            }).catch((statusCode) => {
+                setHttpStatusCode(statusCode)
+            })
+    };
 
     return (
         <Box >
@@ -26,8 +47,8 @@ export function Login() {
                 Welcome to "Guess The Number" <br /> by MobDevOne
             </Typography>
             <Stack className="login" direction="column" spacing={"16px"} sx={{ width: 'fit-content', mt: '75px', alignItems: 'center' }}>
-                <TextField label="Username" autoComplete="off" variant="outlined" sx={{ width: '15em' }}/>
-                <TextField label="Password" autoComplete="off" type={showPassword ? 'text' : 'password'} value={password} onChange={handlePasswordChange} sx={{ width: '15em' }}
+                <TextField label="Username" autoComplete="off" value={username} onChange={getUsername} sx={{ width: '15em' }} />
+                <TextField label="Password" autoComplete="off" type={showPassword ? 'text' : 'password'} value={password} onChange={getPassword} sx={{ width: '15em' }}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="end">
@@ -44,6 +65,7 @@ export function Login() {
                 <Link href="/register" sx={{ fontFamily: 'QuinqueFive', fontSize: 8 }}>
                     Not registered yet? create an account
                 </Link>
+                <ErrorHandling httpStatusCode={httpStatusCode} />
             </Stack>
         </Box>
     );
