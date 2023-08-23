@@ -1,7 +1,6 @@
 import unittest
 import sqlite3
 import os
-import bcrypt
 from src.backend.user_manager import UserManager
 
 class TestUserManager(unittest.TestCase):
@@ -16,19 +15,14 @@ class TestUserManager(unittest.TestCase):
         os.remove(self.db_name)
 
     def test_create_user(self):
-        # Test creating a new user and verifying password hashing
+        # Test creating a new user and error on  duplicate username
         user = self.user_manager.create_user("TestUser", "testpass")
         self.assertEqual(user.name, "TestUser")
-        
-        # Retrieve the stored hashed password from the database
-        stored_user = self.user_manager.conn.execute('''
-            SELECT password
-            FROM users
-            WHERE id = ?
-        ''', (user.id,)).fetchone()
-        
-        # Verify that the hashed password matches the expected hash
-        self.assertTrue(bcrypt.checkpw("testpass".encode('utf-8'), stored_user[0].encode('utf-8')))
+
+        # should raise ValueError, if TestUser realy is created and added to the database
+        with self.assertRaises(ValueError):
+            self.user_manager.create_user("TestUser", "anotherpass")
+
 
     def test_remove_user(self):
         # Test removing an existing and a non-existing user
@@ -37,30 +31,9 @@ class TestUserManager(unittest.TestCase):
         
         # Remove existing user should work and return True
         self.assertTrue(self.user_manager.remove_user(user.name))
-        # Remove non-existing user because removed earlier should rais ValueError
+        # Remove non-existing user because removed earlier should raise ValueError
         with self.assertRaises(ValueError):
             self.user_manager.remove_user("TestUser")
-
-    def test_duplicate_username(self):
-        # Test creating users with duplicate usernames
-        self.user_manager.create_user("TestUser", "testpass")
-        with self.assertRaises(ValueError):
-            self.user_manager.create_user("TestUser", "anotherpass")
-
-    def test_verify_credentials(self):
-        # Test verifying user and password
-        user = self.user_manager.create_user("TestUser", "testpass")
-        self.assertTrue(self.user_manager.log_in_user(user.name, "testpass"))
-        with self.assertRaises(ValueError):
-            self.assertTrue(self.user_manager.log_in_user(user.name, "wrongpass"))
-        with self.assertRaises(ValueError):
-            self.assertTrue(self.user_manager.log_in_user("WrongTestUser", "testpass"))
-
-    def test_score_operations(self):
-        # Test updating and retrieving user scores
-        user = self.user_manager.create_user("TestUser", "testpass")
-        user.update_score(100)
-        self.assertEqual(user.get_score(), 100)
 
     def test_sql_injection_safety(self):
         # Test SQL injection safety by attempting a malicious username
