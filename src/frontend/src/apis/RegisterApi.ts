@@ -1,11 +1,11 @@
 import { getBaseUrl } from "./BaseUrl"
 
-export const LoginApi = (
+export const useRegisterApi = (
     username: String,
     hashedPassword: String,
 ) => async function name(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
-    return fetch(`${getBaseUrl()}/login`, {
+    return fetch(`${getBaseUrl()}/register`, {
         headers: { "content-type": "application/jason" }, body: JSON.stringify({
             username: username,
             password: hashedPassword,
