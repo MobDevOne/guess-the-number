@@ -6,13 +6,13 @@ class UserManager:
     def __init__(self, db_name):
         # Establish a connection to the SQLite database
         self.conn = sqlite3.connect(db_name)
-        self.create_tables()
+        self._create_tables()
 
     def close(self):
         # Closes the database connection
         self.conn.close() 
 
-    def create_tables(self):
+    def _create_tables(self):
         # Create 'users' and 'scores' tables if they don't exist
         with self.conn:
             self.conn.execute('''
