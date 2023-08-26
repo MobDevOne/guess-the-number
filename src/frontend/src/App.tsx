@@ -26,9 +26,9 @@ function App() {
         <Route path='*' element={<Navigate to="/login" />} />
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Register />} />
-        <Route path='username' element={<Home />} />
-        <Route path='username/game' element={<GamePage />} />
-        <Route path='username/high-scores' element={<HighScorePage />} />
+        <Route path=':username' element={<Home />} />
+        <Route path=':username/game' element={<GamePage />} />
+        <Route path=':username/high-scores' element={<HighScorePage />} />
       </Routes>
     </Box>
   );
@@ -43,7 +43,7 @@ function changeBackgroundImage() {
   // Check the URL or any pattern you want and set the background image accordingly
   if (currentUrl.includes('game') || currentUrl.includes('high-scores')) {
     document.body.style.background = 'url("/Background Sunset.png")';
-  } else if (currentUrl.includes('username')) {
+  } else if (currentUrl.includes('home')) {
     document.body.style.background = 'url("/Background Evening.png")';
   } else {
     // Default background image if the URL doesn't match any pattern

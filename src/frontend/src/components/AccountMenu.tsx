@@ -11,7 +11,7 @@ import { AccountCircle, Info } from '@mui/icons-material';
 
 export default function AccountMenu() {
 
-    const checkLocation = window.location.pathname.startsWith('/username')
+    const checkLocation = window.location.pathname.startsWith('/:username')
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
