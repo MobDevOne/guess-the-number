@@ -1,6 +1,6 @@
 import { getBackendUrl } from "./BaseUrl"
 
-export const useRegisterApi = (
+export const RegisterApi = (
     username: String,
     hashedPassword: String,
 ) => async function register(event: React.MouseEvent<HTMLButtonElement>) {

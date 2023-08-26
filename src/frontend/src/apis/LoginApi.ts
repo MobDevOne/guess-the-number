@@ -1,6 +1,6 @@
 import { getBackendUrl } from "./BaseUrl"
 
-export const useLoginApi = (
+export const LoginApi = (
     username: String,
     hashedPassword: String,
 ) => async function login(event: React.MouseEvent<HTMLButtonElement>) {

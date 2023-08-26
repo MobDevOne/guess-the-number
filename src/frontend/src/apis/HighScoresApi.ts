@@ -1,6 +1,6 @@
 import { getBackendUrl } from "./BaseUrl"
 
-export const useHighScoresApi = (
+export const HighScoreApi = (
 ) => async function highScores(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
     return fetch(`${getBackendUrl()}/register`, {

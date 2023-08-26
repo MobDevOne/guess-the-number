@@ -3,7 +3,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useState } from "react";
 import { ErrorHandling } from "../components/ErrorHandling";
-import { useRegisterApi } from "../apis/RegisterApi";
+import { RegisterApi } from "../apis/RegisterApi";
 import { getFrontendUrl } from "../apis/BaseUrl";
 
 export function Register() {
@@ -32,7 +32,7 @@ export function Register() {
 
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
-        useRegisterApi(username, password)(e)
+        RegisterApi(username, password)(e)
             .then(async (response) => {
                 return response.SessionToken
             }).then((sessionToken) => {

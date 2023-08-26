@@ -1,5 +1,5 @@
 import { Box, Button, Typography} from "@mui/material";
-import { useGameStartApi } from "../apis/GameApi";
+import { GameStartApi } from "../apis/GameApi";
 
 
 export function Home() {
@@ -8,7 +8,7 @@ export function Home() {
 
     const handleGameStart = (e: React.MouseEvent<HTMLButtonElement>) => {
         const sessionToken = localStorage.getItem('sessionToken')
-        useGameStartApi(sessionToken!!)(e)
+        GameStartApi(sessionToken!!)(e)
         .then(async (response) => {
             return response.statusCode
         }).catch((statusCode) => {
