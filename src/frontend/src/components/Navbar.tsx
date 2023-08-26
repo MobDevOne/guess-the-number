@@ -2,7 +2,6 @@ import { Tab, Tabs } from "@mui/material"
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom"
-import { useHighScoresApi } from "../apis/HighScoresApi";
 
 export const NavBar = () => {
 
@@ -12,7 +11,7 @@ export const NavBar = () => {
 
     const checkLocation = window.location.pathname.startsWith(`/${username}`)
 
-    const handleHighScores = (e: React.MouseEvent<HTMLButtonElement>) => {
+    /*const handleHighScores = (e: React.MouseEvent<HTMLButtonElement>) => {
         useHighScoresApi()(e)
             .then(async (response) => {
                 return response
@@ -26,7 +25,7 @@ export const NavBar = () => {
                     window.location.href = `high-scores`;
                 }
             })
-    }
+    }*/
 
     useEffect(() => {
         let location = currentLocation.pathname

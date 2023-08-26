@@ -2,7 +2,7 @@ import { Box, Button, IconButton, InputAdornment, Link, Stack, TextField, Typogr
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React, { useState } from "react";
-import { useLoginApi } from "../apis/LoginApi";
+import { LoginApi } from "../apis/LoginApi";
 import { ErrorHandling } from "../components/ErrorHandling";
 import { getFrontendUrl } from "../apis/BaseUrl";
 
@@ -27,7 +27,7 @@ export function Login() {
 
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
-        useLoginApi(username, password)(e)
+        LoginApi(username, password)(e)
             .then(async (response) => {
                 return response.SessionToken
             }).then((sessionToken) => {

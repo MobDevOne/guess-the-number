@@ -1,6 +1,6 @@
 import { getBackendUrl } from "./BaseUrl"
 
-export const useGameStartApi = (
+export const GameStartApi = (
     sessionToken: String
 ) => async function gameStart(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
