@@ -1,5 +1,5 @@
 import unittest
-from session_handler import SessionHandler  # Import your SessionHandler class
+from src.backend.session_handler import SessionHandler
 
 class TestSessionHandler(unittest.TestCase):
 
