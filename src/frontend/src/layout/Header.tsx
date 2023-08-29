@@ -13,7 +13,7 @@ export function Header() {
     <AppBar position="static" className="header" sx={{ bgcolor: "#262626" }}>
       <Stack sx={{ ml: "8px" }}>
         <Toolbar disableGutters>
-          <a href="https://github.com/MobDevOne" target="_blank">
+          <a href="https://github.com/MobDevOne" target="_blank" rel="noreferrer">
             <img className="icon" src={icon} alt="icon" />
           </a>
           <Typography variant="h6" component="a" href="/" sx={{ textDecoration: "none", fontFamily: "revert", fontWeight: 700, fontSize: "30pt", color: "inherit", ml: "8px", mb: "4px" }}>

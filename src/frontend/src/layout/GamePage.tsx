@@ -1,4 +1,4 @@
-import { Box, Button, Card, Stack, TextField, Typography } from "@mui/material"
+import { Box, Button, Card, TextField, Typography } from "@mui/material"
 import ProfOak from "../pictures/Prof. Oak.png"
 
 export const GamePage = () => {
