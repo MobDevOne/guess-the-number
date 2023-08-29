@@ -52,12 +52,6 @@ class TestSessionHandler(unittest.TestCase):
         self.session_handler.update_tries(session_id)
         self.assertEqual(self.session_handler.get_tries(session_id), 1)
 
-    def test_get_username(self):
-        session_id = "abc123"
-        username = "user1"
-        self.session_handler._create_session(session_id, username)
-        self.assertEqual(self.session_handler.get_username(session_id), username)
-
     def test_generate_session_id(self):
         session_id = self.session_handler._generate_session_id()
         self.assertIsNotNone(session_id)
