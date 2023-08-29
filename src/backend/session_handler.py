@@ -29,7 +29,7 @@ class SessionHandler:
             self._remove_session(session_id)
 
     def open_new_session(self, username):
-        self.remove_user_session(username)
+        self.remove_user_sessions(username)
         session_id = self._generate_session_id()
         self._create_session(session_id, username)
 
