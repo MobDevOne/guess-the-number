@@ -16,7 +16,7 @@ export function Header() {
           <a href="https://github.com/MobDevOne" target="_blank">
             <img className="icon" src={icon} alt="icon" />
           </a>
-          <Typography variant="h6" component="a" href="http://localhost:3000" sx={{ textDecoration: "none", fontFamily: "revert", fontWeight: 700, fontSize: "30pt", color: "inherit", ml: "8px", mb: "4px" }}>
+          <Typography variant="h6" component="a" href="/" sx={{ textDecoration: "none", fontFamily: "revert", fontWeight: 700, fontSize: "30pt", color: "inherit", ml: "8px", mb: "4px" }}>
             | Guess The Number
           </Typography>
           <div style={{ flexGrow: 0.98 }} />
