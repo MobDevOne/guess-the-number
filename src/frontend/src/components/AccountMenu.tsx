@@ -57,7 +57,7 @@ export default function AccountMenu() {
             >
                 <MenuItem onClick={handleAbout}>
                     <ListItemIcon>
-                            <Info />                      
+                        <Info />
                     </ListItemIcon>
                     About
                 </MenuItem>

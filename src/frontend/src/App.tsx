@@ -1,6 +1,6 @@
+import './App.css';
 import { Box } from '@mui/material';
 import { Header } from './layout/Header';
-import './App.css';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Login } from './layout/Login';
 import { Register } from './layout/Register';
@@ -12,12 +12,12 @@ import { useEffect } from 'react';
 import { changeBackgroundImage } from './components/ChangeBackground';
 
 function App() {
-  
+
   const location = useLocation()
 
   useEffect(() => {
-  changeBackgroundImage()
-}, [location]);
+    changeBackgroundImage()
+  }, [location]);
 
   return (
     <Box>

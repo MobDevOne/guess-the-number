@@ -14,7 +14,7 @@ export const LoginApi = (
         method: "POST"
     }).then(async (response) => {
         if (response.status >= 400)
-          throw response.status.toString()
-        return JSON.parse(await response.text())   
-})
+            throw response.status.toString()
+        return JSON.parse(await response.text())
+    })
 } 

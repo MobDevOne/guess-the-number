@@ -21,7 +21,7 @@ export function HighScorePage() {
       <DataGrid
         rows={rows}
         columns={columns}
-        sx={{backgroundColor: 'white', opacity: 0.7, mt: '150px'}}
+        sx={{ backgroundColor: 'white', opacity: 0.7, mt: '150px' }}
       />
     </Box>
   );

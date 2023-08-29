@@ -20,7 +20,7 @@ export function Header() {
             | Guess The Number
           </Typography>
           <div style={{ flexGrow: 0.98 }} />
-            <AccountMenu/>
+          <AccountMenu />
         </Toolbar>
       </Stack>
     </AppBar>
