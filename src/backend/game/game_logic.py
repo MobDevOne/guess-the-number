@@ -11,7 +11,7 @@ class GameManager():
     def __init__(self) -> None:
         # set start score to 1000
         self.start_score = 1000
-        self.guess_count = 0
+       # self.guess_count = 0
 
     def get_random_number(self):
         return random.randint(1, 100)
@@ -25,7 +25,7 @@ class GameManager():
             TOO_LOW = -1
             CORRECT = 0
 
-        self.guess_count += 1
+        # self.guess_count += 1
 
         if guess > random_integer:
             return GuessStatus.TOO_HIGH
