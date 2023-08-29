@@ -8,7 +8,7 @@ function Success(){
   type ErrorHandlingProps = {httpStatusCode?: number}
   
   export function ErrorHandling(props: ErrorHandlingProps){ 
-    if(props.httpStatusCode == undefined) return <p></p>
+    if(props.httpStatusCode === undefined) return <p></p>
     else
     return props.httpStatusCode === 200 ? <Success/>: <Error/>
 }
