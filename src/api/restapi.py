@@ -5,7 +5,7 @@ from backend.game.game_logic import GameManager
 app = Flask(__name__)
 
 
-@app.route("/gethighscores")
+@app.route("/highscores")
 def get_highscore():
     # for all users or for current user?
     # call function to get high score(s)
