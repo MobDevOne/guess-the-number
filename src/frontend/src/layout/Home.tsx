@@ -9,6 +9,7 @@ export function Home() {
     const username = localStorage.getItem('username')
 
     const navigate = useNavigate()
+    
 
     const handleGameStart = (e: React.MouseEvent<HTMLButtonElement>) => {
         const sessionToken = localStorage.getItem('sessionToken')
