@@ -1,15 +1,16 @@
 import { Tab, Tabs } from "@mui/material"
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 export const NavBar = () => {
 
     const currentLocation = useLocation()
     const [tabValue, setTabValue] = useState("game");
     const username = localStorage.getItem('username')
+    const navigate = useNavigate()
 
-    const checkLocation = window.location.pathname.startsWith(`/${username}`)
+    const checkLocation = useLocation().pathname.startsWith(`/${username}`)
 
     /*const handleHighScores = (e: React.MouseEvent<HTMLButtonElement>) => {
         useHighScoresApi()(e)
@@ -22,7 +23,7 @@ export const NavBar = () => {
                 }]));
             }).catch((statusCode) => {
                 if (statusCode === 200) {
-                    window.location.href = `high-scores`;
+                    navigate(`/high-scores`);
                 }
             })
     }*/

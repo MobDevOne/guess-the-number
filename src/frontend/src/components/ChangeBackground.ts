@@ -1,11 +1,8 @@
-export function changeBackgroundImage() {
-  // Get the current URL
-  const currentUrl = window.location.href;
-
+export function changeBackgroundImage(currentUrl: string) {
   // Check the URL or any pattern you want and set the background image accordingly
   if (currentUrl.includes('game') || currentUrl.includes('high-scores')) {
     document.body.style.background = 'url("/Background Sunset.png")';
-  } else if (currentUrl.includes('home')) {
+  } else if (currentUrl.includes('u')) {
     document.body.style.background = 'url("/Background Evening.png")';
   } else {
     // Default background image if the URL doesn't match any pattern

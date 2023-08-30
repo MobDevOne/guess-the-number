@@ -1,11 +1,14 @@
 import { Box, Button, Typography } from "@mui/material";
 import { GameStartApi } from "../apis/GameApi";
 import { HighScoreApi } from "../apis/HighScoresApi";
+import { useNavigate } from "react-router-dom";
 
 
 export function Home() {
 
     const username = localStorage.getItem('username')
+
+    const navigate = useNavigate()
 
     const handleGameStart = (e: React.MouseEvent<HTMLButtonElement>) => {
         const sessionToken = localStorage.getItem('sessionToken')
@@ -14,7 +17,7 @@ export function Home() {
             return response.statusCode
         }).catch((statusCode) => {
             if (statusCode === 200) {
-                window.location.href = `./game`;
+                navigate(`./game`);
             }
         })
     }
@@ -25,7 +28,7 @@ export function Home() {
             return response.statusCode
         }).catch((statusCode) => {
             if (statusCode === 200) {
-                window.location.href = `./high-scores`;
+                navigate(`./high-scores`);
             }
         })
     }

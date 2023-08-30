@@ -4,7 +4,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useState } from "react";
 import { ErrorHandling } from "../components/ErrorHandling";
 import { RegisterApi } from "../apis/RegisterApi";
-import { getFrontendUrl } from "../apis/BaseUrl";
+import { useNavigate } from "react-router-dom";
 
 export function Register() {
 
@@ -13,6 +13,8 @@ export function Register() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [httpStatusCode, setHttpStatusCode] = useState<number>()
+
+    const navigate = useNavigate()
 
     const getUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
@@ -46,7 +48,7 @@ export function Register() {
             }).catch((statusCode) => {
                 setHttpStatusCode(statusCode)
                 if (statusCode === 200) {
-                    window.location.href = `${getFrontendUrl()}/${username}`;
+                    navigate(`/u/${username}`)
                 }
             })
     };

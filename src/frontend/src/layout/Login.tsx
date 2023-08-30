@@ -4,7 +4,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React, { useState } from "react";
 import { LoginApi } from "../apis/LoginApi";
 import { ErrorHandling } from "../components/ErrorHandling";
-import { getFrontendUrl } from "../apis/BaseUrl";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
 
@@ -12,6 +12,8 @@ export function Login() {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [httpStatusCode, setHttpStatusCode] = useState<number>()
+
+    const navigate = useNavigate()
 
     const getUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
@@ -27,7 +29,8 @@ export function Login() {
 
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
-        LoginApi(username, password)(e)
+        navigate(`/u/${username}`)
+        /*LoginApi(username, password)(e)
             .then(async (response) => {
                 return response.SessionToken
             }).then((sessionToken) => {
@@ -39,10 +42,10 @@ export function Login() {
                 setPassword('')
             }).catch((statusCode) => {
                 setHttpStatusCode(statusCode)
-                if (statusCode === 200) {
-                    window.location.href = `${getFrontendUrl()}/${username}`;
+                if (statusCode === '200') {
+                    navigate(`/u/${username}`)
                 }
-            })
+            })*/
     };
 
     return (

@@ -16,8 +16,8 @@ function App() {
   const location = useLocation()
 
   useEffect(() => {
-    changeBackgroundImage()
-  }, [location]);
+    changeBackgroundImage(location.pathname)
+  }, [location.pathname]);
 
   return (
     <Box>
