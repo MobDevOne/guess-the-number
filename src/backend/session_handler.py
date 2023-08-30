@@ -49,7 +49,8 @@ class SessionHandler:
             return session["tries"]
         return None
 
-    def _generate_session_id(self):
+    @staticmethod
+    def _generate_session_id():
         return str(uuid.uuid4())
 
 # Example usage
