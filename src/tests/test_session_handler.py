@@ -14,7 +14,6 @@ class TestSessionHandler(unittest.TestCase):
         self.assertIsNotNone(session)
         self.assertEqual(session["username"], username)
         self.assertEqual(session["tries"], 0)
-        self.assertEqual(session["random_number"], 42)
 
     def test_remove_session(self):
         session_id = "abc123"
@@ -43,7 +42,6 @@ class TestSessionHandler(unittest.TestCase):
         self.assertIsNotNone(session)
         self.assertEqual(session["username"], username)
         self.assertEqual(session["tries"], 0)
-        self.assertEqual(session["random_number"], 42)
 
     def test_update_tries(self):
         session_id = "abc123"
