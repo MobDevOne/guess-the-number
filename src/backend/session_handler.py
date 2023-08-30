@@ -33,6 +33,8 @@ class SessionHandler:
         session_id = self._generate_session_id()
         self._create_session(session_id, username)
 
+        return session_id
+
     def get_session(self, session_id):
         return self.sessions.get(session_id, None)
 
