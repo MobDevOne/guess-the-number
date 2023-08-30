@@ -1,13 +1,13 @@
 import uuid
 from collections import defaultdict
+from src.backend.game.game_logic import GameManager
 
 class SessionHandler:
     def __init__(self):
         self.sessions = defaultdict(dict)
 
     def _create_session(self, session_id, username):
-        # TODO: get random number
-        random_number = 42
+        random_number = GameManager.get_random_number()
 
         self.sessions[session_id] = {
             "username": username,
@@ -54,24 +54,6 @@ class SessionHandler:
 if __name__ == "__main__":
     session_handler = SessionHandler()
 
-    session_id1 = "abc123"
-    session_id2 = "def456"
     username = "player1"
 
-    session_handler = SessionHandler()
-
-    session_id1 = "abc123"
-    session_id2 = "def456"
-    username = "player1"
-
-    session_handler.open_new_session(session_id1, username)
-    print(f"Session 1 exists: {session_id1 in session_handler.sessions}")
-    print(f"Session 2 exists: {session_id2 in session_handler.sessions}")
-
-    session_handler.open_new_session(session_id2, username)
-    print(f"Session 1 exists: {session_id1 in session_handler.sessions}")
-    print(f"Session 2 exists: {session_id2 in session_handler.sessions}")
-
-    session_handler.remove_user_sessions(username)
-    print(f"Session 1 exists: {session_id1 in session_handler.sessions}")
-    print(f"Session 2 exists: {session_id2 in session_handler.sessions}")
+    session_handler.open_new_session(username)
