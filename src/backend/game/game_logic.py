@@ -13,8 +13,9 @@ class GameManager():
         self.start_score = 1000
         self.guess_count = 0
 
-    def get_random_number(self):
-        return random.randint(1, 100)
+    @staticmethod
+    def get_random_number():
+        return random.randint(1, 100)    
 
     def get_guess_count(self):
         return self.guess_count
