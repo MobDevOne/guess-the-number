@@ -37,9 +37,8 @@ class TestSessionHandler(unittest.TestCase):
         self.assertIsNone(session2)
 
     def test_open_new_session(self):
-        session_id = "abc123"
         username = "user1"
-        self.session_handler.open_new_session(username)
+        session_id = self.session_handler.open_new_session(username)
         session = self.session_handler.get_session(session_id)
         self.assertIsNotNone(session)
         self.assertEqual(session["username"], username)
