@@ -6,7 +6,7 @@ export const LoginApi = (
 ) => async function login(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
     return fetch(`${getBackendUrl()}/login`, {
-        headers: { "content-type": "application/jason" }, body: JSON.stringify({
+        headers: { "content-type": "application/json" }, body: JSON.stringify({
             kind: "user-login",
             username: username,
             password: hashedPassword,

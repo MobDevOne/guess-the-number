@@ -6,7 +6,7 @@ export const RegisterApi = (
 ) => async function register(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
     return fetch(`${getBackendUrl()}/register`, {
-        headers: { "content-type": "application/jason" }, body: JSON.stringify({
+        headers: { "content-type": "application/json" }, body: JSON.stringify({
             kind: "register",
             username: username,
             password: hashedPassword,

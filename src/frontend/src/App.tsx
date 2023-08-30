@@ -27,9 +27,9 @@ function App() {
         <Route path='*' element={<Navigate to="/login" />} />
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Register />} />
-        <Route path=':username' element={<Home />} />
-        <Route path=':username/game' element={<GamePage />} />
-        <Route path=':username/high-scores' element={<HighScorePage />} />
+        <Route path='u/:username' element={<Home />} />
+        <Route path='u/:username/game' element={<GamePage />} />
+        <Route path='u/:username/high-scores' element={<HighScorePage />} />
       </Routes>
     </Box>
   );

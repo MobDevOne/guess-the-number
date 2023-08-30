@@ -3,8 +3,8 @@ import { getBackendUrl } from "./BaseUrl"
 export const HighScoreApi = (
 ) => async function highScores(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
-    return fetch(`${getBackendUrl()}/register`, {
-        headers: { "content-type": "application/jason" }, body: JSON.stringify({
+    return fetch(`${getBackendUrl()}/high-scores`, {
+        headers: { "content-type": "application/json" }, body: JSON.stringify({
             kind: "high-scores",
         }),
         method: "POST"

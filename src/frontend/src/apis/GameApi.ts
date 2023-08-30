@@ -5,7 +5,7 @@ export const GameStartApi = (
 ) => async function gameStart(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
     return fetch(`${getBackendUrl()}/game-start`, {
-        headers: { "content-type": "application/jason" }, body: JSON.stringify({
+        headers: { "content-type": "application/json" }, body: JSON.stringify({
             kind: "game-start",
             sessionToken: sessionToken
         }),
