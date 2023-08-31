@@ -108,7 +108,7 @@ class UserManager:
                 raise ValueError(f"user {username} does not exist")
 
 # suggestions for high score methods
-    def _get_high_score(self, username):
+    def get_high_score(self, username):
         # Get score for given username
         with self.conn:
             cursor = self.conn.execute('''
@@ -126,7 +126,7 @@ class UserManager:
             else:
                 raise ValueError(f"score {score} does not exist")
 
-    def _get_all_highscores(self):
+    def get_all_highscores(self):
         # blaa
         with self.conn:
             cursor = self.conn.execute('''
