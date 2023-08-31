@@ -46,20 +46,23 @@ def guess():
 
 @app.route("/highscores")
 def get_highscore():
-    # for all users or for current user?
-    # call function to get high score(s)
-    high_scores = {"RobloxJean": 420, "Leventus Mutlus": 69}
-    return jsonify(high_scores)
+    highscores = user_manager.get_all_highscores()
+    return jsonify(high_scores=highscores)
 
-# @app.route("/logout")
-# @app.route("/logout-all")
+
+@app.route("/logout")
+def logout():
+    data = request.get_json()
+    session_id = data['session_id']
+    current_session = session_handler.get_session(session_id)
+    username = current_session['username']
+    session_handler.remove_user_sessions(username)
+
+
 # @app.route("/delete")
 
-
 if __name__ == "__main__":
-    # dummy data
-    database = "test.db"
+    database = "src\backend\database\guess_the_number.db"
     user_manager = UserManager(database)
-    user_manager.create_tables()
     game_manager = GameManager()
     session_handler = SessionHandler()
