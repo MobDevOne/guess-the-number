@@ -1,6 +1,6 @@
 import uuid
 from collections import defaultdict
-from src.backend.game.game_logic import GameManager
+from game_logic import GameManager
 
 
 class SessionHandler:
