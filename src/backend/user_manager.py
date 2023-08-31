@@ -1,6 +1,6 @@
 import sqlite3
 import uuid
-from src.backend.user import User
+from user import User
 
 
 class UserManager:
