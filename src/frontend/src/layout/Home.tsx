@@ -29,7 +29,7 @@ export function Home() {
             return response.statusCode
         }).catch((statusCode) => {
             if (statusCode === 200) {
-                navigate(`./high-scores`);
+                navigate(`./highscores`);
             }
         })
     }

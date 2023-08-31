@@ -23,7 +23,7 @@ export const NavBar = () => {
                 }]));
             }).catch((statusCode) => {
                 if (statusCode === 200) {
-                    navigate(`/high-scores`);
+                    navigate(`/highscores`);
                 }
             })
     }*/
@@ -33,8 +33,8 @@ export const NavBar = () => {
 
         if (location.startsWith("/:username/game")) {
             setTabValue("game")
-        } else if (location.startsWith("/:username/high-scores")) {
-            setTabValue("high-scores")
+        } else if (location.startsWith("/:username/highscores")) {
+            setTabValue("highscores")
         } else {
             setTabValue("username")
         }
@@ -45,7 +45,7 @@ export const NavBar = () => {
             <Tabs value={tabValue} sx={{ justifyContent: 'center', fontSize: 10, fontFamily: 'QuinqueFive' }}>
                 <Tab component={Link} to="username" label="Home" value="username" />
                 <Tab component={Link} to="username/game" label="Game" value="game" />
-                <Tab component={Link} to="/high-scores" label="High-Scores" value="high-scores" />
+                <Tab component={Link} to="/highscores" label="HighScores" value="highscores" />
             </Tabs>
         </Box>
     ) : (
