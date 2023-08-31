@@ -36,14 +36,7 @@ jobs:
             echo "No requirements.txt file found. Skipping installation of dependencies."
         fi
     
-    # Step 4: List all test files found
-    - name: List test files
-      run: |
-        # List all test files with the filename pattern test_*.py in the src/tests/ directory
-        test_files=$(find src/tests/ -name 'test_*.py' | wc -l)
-        echo "Found $test_files test files."    
-    
-    # Step 5: Run tests using unittest
+    # Step 4: Run tests using unittest
     - name: Run tests
       run: |
         # Run all unit tests with a filename pattern test_*.py in the src/tests/ directory

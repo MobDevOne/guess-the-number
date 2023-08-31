@@ -47,10 +47,6 @@ The `UserManager` class provides methods for user management and score tracking 
 
 - Closes the database connection.
 
-#### `create_tables(self)`
-
-- Creates the 'users' and 'scores' tables if they do not exist in the database.
-
 #### `create_user(self, name, password)`
 
 - Creates a new user and adds their information to the database.
@@ -88,6 +84,7 @@ The `UserManager` class provides methods for user management and score tracking 
 
 - `_verify_username(self, username)`: Checks if a username exists.
 - `_get_user_id(self, username)`: Retrieves the user ID for a given username.
+- `_create_tables(self)`: Creates the 'users' and 'scores' tables if they do not exist in the database.
 
 ## Example Usage
 
@@ -121,3 +118,6 @@ print(f"Hashed Password for username2: {hashed_password}")
 
 Contributions are welcome! If you encounter any issues or have suggestions for improvements, please feel free to submit a pull request or open an issue on the GitHub repository.
 
+## License
+
+This project is licensed under the MIT License.
