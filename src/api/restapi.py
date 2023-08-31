@@ -10,8 +10,8 @@ def create_new_user():
     user_data = request.get_json()
     user_manager.create_user(user_data['username'], user_data['password'])
     # create session token with user data using Session Handler
-    session_id = session_handler.open_new_session(user_data['username'])
-    return jsonify(session_token=session_id)
+    session_dict = session_handler.open_new_session(user_data['username'])
+    return jsonify(session_id=session_dict['session_id'])
 
 
 @app.route("/login")
@@ -27,14 +27,21 @@ def login_user():
 def start_game():
     data = request.get_json()
     session_id = data['session_id']
-    current_session = session_handler.get_session(session_id)
+    session_handler.start_game(session_id)
     return
 
 
 @app.route("/game-guess")
 def guess():
     data = request.get_json()
-    comparison_result = game_manager.compare_guess_to_random_integer()
+    session_id = data['session_id']
+    current_session = session_handler.get_session(session_id)
+    session_guess = data['guess']
+    guess_status = game_manager.compare_guess_to_random_integer(
+        session_guess, current_session['random_number'])
+    session_handler.update_tries(session_id)
+    current_guess_count = current_session['tries']
+    return jsonify(status=guess_status, guess_count=current_guess_count)
 
 
 @app.route("/highscores")

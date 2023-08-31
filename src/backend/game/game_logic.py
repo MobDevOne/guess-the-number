@@ -11,14 +11,10 @@ class GameManager():
     def __init__(self) -> None:
         # set start score to 1000
         self.start_score = 1000
-       # self.guess_count = 0
 
     @staticmethod
     def get_random_number():
-        return random.randint(1, 100)    
-
-    def get_guess_count(self):
-        return self.guess_count
+        return random.randint(1, 100)
 
     def compare_guess_to_random_integer(self, guess, random_integer):
         class GuessStatus(Enum):
