@@ -10,21 +10,19 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 @app.route("/register", methods=['POST'])
 def create_new_user():
     user_data = request.get_json()
-    print(user_data['username'])
     user_manager.create_user(user_data['username'], user_data['password'])
     # create session token with user data using Session Handler
-    session_dict = session_handler.open_new_session(user_data['username'])
-    print(session_dict)
-    return jsonify(session_dict['session_id'])
+    current_session_id = session_handler.open_new_session(user_data['username'])
+    return jsonify(current_session_id)
 
 
-@app.route("/login")
+@app.route("/login", methods=['POST'])
 def login_user():
     user_data = request.get_json()
-    user_manager.get_user(user_data[1])
+    user_manager.get_user(user_data['username'])
     # create session token with user data using Session Handler
-    session_dict = session_handler.open_new_session(user_data['username'])
-    return jsonify(session_id=session_dict['session_id'])
+    current_session_id = session_handler.open_new_session(user_data['username'])
+    return jsonify(current_session_id)
 
 
 @app.route("/game-start")
@@ -66,7 +64,7 @@ def logout():
 # @app.route("/delete")
 
 if __name__ == "__main__":
-    database = r"src\backend\database\guess_the_number.db"
+    database = r"guess_the_number.db"
     user_manager = UserManager(database)
     game_manager = GameManager()
     session_handler = SessionHandler()
