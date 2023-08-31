@@ -12,8 +12,8 @@ export function Home() {
     
 
     const handleGameStart = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const sessionToken = localStorage.getItem('sessionToken')
-        GameStartApi(sessionToken!!)(e)
+        const sessionId = localStorage.getItem('sessionId')
+        GameStartApi(sessionId!!)(e)
         .then(async (response) => {
             return response.statusCode
         }).catch((statusCode) => {

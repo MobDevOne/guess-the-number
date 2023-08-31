@@ -36,11 +36,11 @@ export function Register() {
         setHttpStatusCode(undefined)
         RegisterApi(username, password)(e)
             .then(async (response) => {
-                return response.SessionToken
-            }).then((sessionToken) => {
+                return response.SessionId
+            }).then((sessionId) => {
                 localStorage.setItem('', JSON.stringify([{
                     username: username,
-                    sessionToken: sessionToken
+                    sessionId: sessionId
                 }]));
                 setUsername('')
                 setPassword('')

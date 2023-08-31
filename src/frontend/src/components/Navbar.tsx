@@ -16,10 +16,10 @@ export const NavBar = () => {
         useHighScoresApi()(e)
             .then(async (response) => {
                 return response
-            }).then((sessionToken) => {
+            }).then((sessionId) => {
                 localStorage.setItem('', JSON.stringify([{
                     username: username,
-                    sessionToken: sessionToken
+                    sessionId: sessionId
                 }]));
             }).catch((statusCode) => {
                 if (statusCode === 200) {

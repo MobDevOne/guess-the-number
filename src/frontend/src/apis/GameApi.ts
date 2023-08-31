@@ -1,13 +1,13 @@
 import { getBackendUrl } from "./BaseUrl"
 
 export const GameStartApi = (
-    sessionToken: String
+    sessionId: String
 ) => async function gameStart(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
     return fetch(`${getBackendUrl()}/game-start`, {
         headers: { "content-type": "application/json" }, body: JSON.stringify({
             kind: "game-start",
-            sessionToken: sessionToken
+            sessionId: sessionId
         }),
         method: "POST"
     }).then(async (response) => {
