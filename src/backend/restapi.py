@@ -1,13 +1,16 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from user_manager import UserManager
 from game_logic import GameManager
 from session_handler import SessionHandler
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
-@app.route("/register")
+@app.route("/register", methods=['POST'])
 def create_new_user():
     user_data = request.get_json()
+    print(user_data)
     user_manager.create_user(user_data['username'], user_data['password'])
     # create session token with user data using Session Handler
     session_dict = session_handler.open_new_session(user_data['username'])
