@@ -15,6 +15,8 @@ export const RegisterApi = (
     }).then(async (response) => {
         if (response.status >= 400)
             throw response.status.toString()
-        return JSON.parse(await response.text())
+        const responseData = await response.json();
+        console.log(responseData);
+        return responseData;
     })
 } 

@@ -29,22 +29,17 @@ export function Login() {
 
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
-        /*navigate(`/u/${username}`)*/
         LoginApi(username, password)(e)
-            .then(async (response) => {
-                return response.SessionId
+            .then(async (responseData) => {
+                return responseData
             }).then((sessionId) => {
-                localStorage.setItem('', JSON.stringify([{
-                    username: username,
-                    sessionId: sessionId
-                }]));
+                localStorage.setItem('username', username);
+                localStorage.setItem('sessionId', sessionId);
                 setUsername('')
                 setPassword('')
+                navigate(`/u/${username}`)
             }).catch((statusCode) => {
                 setHttpStatusCode(statusCode)
-                if (statusCode === '200') {
-                    navigate(`/u/${username}`)
-                }
             })
     };
 

@@ -38,18 +38,14 @@ export function Register() {
             .then(async (response) => {
                 return response.SessionId
             }).then((sessionId) => {
-                localStorage.setItem('', JSON.stringify([{
-                    username: username,
-                    sessionId: sessionId
-                }]));
+                localStorage.setItem('username', username);
+                localStorage.setItem('sessionId', sessionId);
                 setUsername('')
                 setPassword('')
                 setConfirmPassword('')
+                navigate(`/u/${username}`)
             }).catch((statusCode) => {
                 setHttpStatusCode(statusCode)
-                if (statusCode === 200) {
-                    navigate(`/u/${username}`)
-                }
             })
     };
 
