@@ -2,7 +2,9 @@ from flask import Flask, request, jsonify
 from user_manager import UserManager
 from game_logic import GameManager
 from session_handler import SessionHandler
+from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = r"src\backend\database\guess_the_number.db"
 
 
 @app.route("/register")
@@ -62,7 +64,7 @@ def logout():
 # @app.route("/delete")
 
 if __name__ == "__main__":
-    database = r"src\backend\database\guess_the_number.db"
+    database = SQLAlchemy()
     user_manager = UserManager(database)
     game_manager = GameManager()
     session_handler = SessionHandler()
