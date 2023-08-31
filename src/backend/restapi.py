@@ -10,11 +10,12 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 @app.route("/register", methods=['POST'])
 def create_new_user():
     user_data = request.get_json()
-    print(user_data)
+    print(user_data['username'])
     user_manager.create_user(user_data['username'], user_data['password'])
     # create session token with user data using Session Handler
     session_dict = session_handler.open_new_session(user_data['username'])
-    return jsonify(session_id=session_dict['session_id'])
+    print(session_dict)
+    return jsonify(session_dict['session_id'])
 
 
 @app.route("/login")

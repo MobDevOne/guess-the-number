@@ -6,7 +6,7 @@ from user import User
 class UserManager:
     def __init__(self, db_name):
         # Establish a connection to the SQLite database
-        self.conn = sqlite3.connect(db_name)
+        self.conn = sqlite3.connect(db_name, check_same_thread=False)
         self._create_tables()
 
     def close(self):
