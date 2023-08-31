@@ -14,14 +14,8 @@ export function Home() {
     const handleGameStart = (e: React.MouseEvent<HTMLButtonElement>) => {
         const sessionId = localStorage.getItem('sessionId')
         GameStartApi(sessionId!!)(e)
-        .then(async (response) => {
-            return response.statusCode
-        }).catch((statusCode) => {
-            if (statusCode === 200) {
-                navigate(`./game`);
-            }
-        })
-    }
+        navigate(`./game`);
+    } 
 
     const handleHighScores = (e: React.MouseEvent<HTMLButtonElement>) => {
         HighScoreApi()(e)

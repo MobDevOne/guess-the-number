@@ -16,21 +16,19 @@ class GameManager():
     def get_random_number():
         return random.randint(1, 100)
 
-    def compare_guess_to_random_integer(self, guess, random_integer):
-        class GuessStatus(Enum):
-            TOO_HIGH = 1
-            TOO_LOW = -1
-            CORRECT = 0
-
+    def compare_guess_to_random_number(self, guess, random_number):
+        TOO_HIGH = 1
+        TOO_LOW = -1
+        CORRECT = 0
         # self.guess_count += 1
 
-        if guess > random_integer:
-            return GuessStatus.TOO_HIGH
+        if guess > random_number:
+            return TOO_HIGH
 
-        elif guess < random_integer:
-            return GuessStatus.TOO_LOW
+        elif guess < random_number:
+            return TOO_LOW
 
-        return GuessStatus.CORRECT
+        return CORRECT
 
     def calculate_score(self, guess_count):
         # using "max" to compare the guess_count to 0 so if the score is negative (meaning the player took to many attempts) he just gets 0 points

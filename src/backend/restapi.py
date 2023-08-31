@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 from user_manager import UserManager
 from game_logic import GameManager
@@ -25,34 +25,34 @@ def login_user():
     return jsonify(current_session_id)
 
 
-@app.route("/game-start")
+@app.route("/game-start", methods=['POST'])
 def start_game():
     data = request.get_json()
     session_id = data['session_id']
     session_handler.start_game(session_id)
-    return
+    return "200"
 
 
-@app.route("/game-guess")
+@app.route("/game-guess", methods=['POST'])
 def guess():
     data = request.get_json()
     session_id = data['session_id']
-    current_session = session_handler.get_session(session_id)
+    current_random_number_for_session = session_handler.get_random_number_for_session(session_id)
     session_guess = data['guess']
-    guess_status = game_manager.compare_guess_to_random_integer(
-        session_guess, current_session['random_number'])
+    guess_status = game_manager.compare_guess_to_random_number(
+        session_guess, current_random_number_for_session)
     session_handler.update_tries(session_id)
-    current_guess_count = current_session['tries']
+    current_guess_count = session_handler.get_tries(session_id)
     return jsonify(status=guess_status, guess_count=current_guess_count)
 
 
-@app.route("/highscores")
+@app.route("/highscores", methods=['GET'])
 def get_highscore():
     highscores = user_manager.get_all_highscores()
     return jsonify(high_scores=highscores)
 
 
-@app.route("/logout")
+@app.route("/logout", methods=['POST'])
 def logout():
     data = request.get_json()
     session_id = data['session_id']
@@ -64,7 +64,7 @@ def logout():
 # @app.route("/delete")
 
 if __name__ == "__main__":
-    database = r"guess_the_number.db"
+    database = r"database/guess_the_number.db"
     user_manager = UserManager(database)
     game_manager = GameManager()
     session_handler = SessionHandler()
