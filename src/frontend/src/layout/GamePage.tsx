@@ -2,6 +2,7 @@ import { Box, Button, Card, TextField, Typography } from "@mui/material"
 import ProfOak from "../pictures/Prof. Oak.png"
 import { GameApi } from "../apis/GameApi";
 import { useEffect, useState } from "react";
+import { WinningScreen } from "../components/WinningScreen";
 
 export const GamePage = () => {
 
@@ -30,7 +31,7 @@ export const GamePage = () => {
             setMessage(`Too high try again. Attempts: ${attempts}`)
         }
         else if (guessStatus === 0) {
-            setMessage("we have a winner")
+            setMessage("we have a winner congratulations")
             //TODO: Add new screen that shows that you won
         }
     }
@@ -39,7 +40,7 @@ export const GamePage = () => {
         guessStatusMessage()
     }, [attempts, guessStatus])
 
-    return (
+    return guessStatus != 0 ? (
         <Box display='flex' flexDirection='column' alignItems="center" justifyContent="center" sx={{ width: 'fit-content', mt: '150px', mx: 'auto' }}>
             <Card sx={{ maxWidth: '150px', p: '15px' }}>
                 <Typography sx={{ fontSize: 10, fontFamily: 'QuinqueFive', textAlign: 'center' }}>
@@ -57,7 +58,11 @@ export const GamePage = () => {
             />
             <Button variant="contained" onClick={sendGuess} sx={{ fontSize: 10, fontFamily: 'QuinqueFive', mt: '16px' }}>
                 Guess
-            </Button>
+            </Button>    
         </Box>
-    );
+    ): ( 
+        <Box display='flex' flexDirection='column' alignItems="center" justifyContent="center" sx={{ width: 'fit-content', mt: '150px', mx: 'auto' }}>
+            <WinningScreen /> 
+        </Box>
+    )
 }
