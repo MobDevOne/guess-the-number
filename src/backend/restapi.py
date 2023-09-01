@@ -64,7 +64,7 @@ def logout():
 # @app.route("/delete")
 
 if __name__ == "__main__":
-    database = r"database/guess_the_number.db"
+    database = r"./guess_the_number.db"
     user_manager = UserManager(database)
     game_manager = GameManager()
     session_handler = SessionHandler()

@@ -16,7 +16,6 @@ export const LoginApi = (
         if (response.status >= 400)
             throw response.status.toString()
         const responseData = await response.json();
-        console.log(responseData);
         return responseData;
     })
 } 
