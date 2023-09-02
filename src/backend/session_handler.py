@@ -1,6 +1,6 @@
 import uuid
 from collections import defaultdict
-from game_logic import GameManager
+from game_manager import GameManager
 
 
 class SessionHandler:
@@ -22,10 +22,8 @@ class SessionHandler:
     def start_game(self, session_id):
         random_number = GameManager.get_random_number()
 
-        session = self.get_session(session_id)
-        session['random_number'] = random_number
-        session['tries'] = 0
-        return session
+        self.sessions[session_id]['random_number'] = random_number
+        self.sessions[session_id]['tries'] = 0
 
     def remove_user_sessions(self, username):
         sessions_to_remove = []
@@ -46,10 +44,13 @@ class SessionHandler:
     def get_session(self, session_id):
         return self.sessions.get(session_id, None)
 
+    def get_random_number_for_session(self, session_id):
+        return self.sessions.get(session_id, {}).get('random_number', 0)
+
     def update_tries(self, session_id):
         session = self.get_session(session_id)
         if session:
-            session["tries"] += 1
+            self.sessions[session_id]['tries'] += 1
 
     def get_tries(self, session_id):
         session = self.get_session(session_id)
