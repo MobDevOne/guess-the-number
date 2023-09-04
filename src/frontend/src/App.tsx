@@ -10,6 +10,7 @@ import { Home } from './layout/Home';
 import { NavBar } from './components/Navbar';
 import { useEffect } from 'react';
 import { changeBackgroundImage } from './components/ChangeBackground';
+import AboutPage from './layout/About';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route path='*' element={<Navigate to="/login" />} />
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Register />} />
+        <Route path='about' element={<AboutPage />} />
         <Route path='u/:username' element={<Home />} />
         <Route path='u/:username/game' element={<GamePage />} />
         <Route path='u/:username/highscores' element={<HighScorePage />} />

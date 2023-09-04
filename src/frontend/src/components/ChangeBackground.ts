@@ -2,6 +2,8 @@ export function changeBackgroundImage(currentUrl: string) {
   // Check the URL or any pattern you want and set the background image accordingly
   if (currentUrl.includes('game') || currentUrl.includes('highscores')) {
     document.body.style.background = 'url("/Background Sunset.png")';
+  } else if (currentUrl.includes('about')) {
+    document.body.style.background = 'url("/Background Night.png")';
   } else if (currentUrl.includes('u')) {
     document.body.style.background = 'url("/Background Evening.png")';
   } else {

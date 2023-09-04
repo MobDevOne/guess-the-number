@@ -6,8 +6,30 @@ import {
 } from "@mui/material";
 import icon from "../pictures/MobDevOne192.png";
 import AccountMenu from "../components/AccountMenu";
+import { useState, useEffect } from "react";
 
 export function Header() {
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const vertLine = {
+    borderLeft: "4px solid white",
+    height: "46px",
+    marginLeft: "8px",
+    marginRight: "8px",
+  };
 
   return (
     <AppBar position="static" className="header" sx={{ bgcolor: "#262626" }}>
@@ -16,8 +38,9 @@ export function Header() {
           <a href="https://github.com/MobDevOne" target="_blank" rel="noreferrer">
             <img className="icon" src={icon} alt="icon" />
           </a>
-          <Typography variant="h6" component="a" href="/" sx={{ textDecoration: "none", fontFamily: "revert", fontWeight: 700, fontSize: "30pt", color: "inherit", ml: "8px", mb: "4px" }}>
-            | Guess The Number
+          <div style={vertLine} />
+          <Typography variant="h6" component="a" href="/" sx={{ textDecoration: "none", fontFamily: "revert", fontWeight: 700, fontSize: "30pt", color: "inherit"}}>
+            {windowWidth < 550 ? "GTN" : "Guess The Number"}
           </Typography>
           <div style={{ flexGrow: 0.98 }} />
           <AccountMenu />
@@ -26,3 +49,4 @@ export function Header() {
     </AppBar>
   );
 }
+
