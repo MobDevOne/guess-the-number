@@ -26,9 +26,9 @@ This project was developed as part of our school curriculum to demonstrate our p
 The "Guess the Number" game is a classic and fun game that challenges players to guess a randomly generated number within a certain range.
 
 Key features of our project include:
-Random number generation within a specified range.
-User-friendly interface with clear instructions.
-Feedback to let players know if their guess is too high or too low.
-Score tracking to record the number of attempts taken to guess the correct number.
+- Random number generation within a specified range.
+- User-friendly interface with clear instructions.
+- Feedback to let players know if their guess is too high or too low.
+- Score tracking to record the number of attempts taken to guess the correct number.
 
 We hope you enjoy playing our "Guess the Number" game and find it both entertaining and challenging. Thank you for visiting our project's About page!
