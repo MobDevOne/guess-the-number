@@ -5,11 +5,13 @@ import React, { useState } from "react";
 import { LoginApi } from "../apis/LoginApi";
 import { ErrorHandling } from "../components/ErrorHandling";
 import { useNavigate } from "react-router-dom";
+import { hashAlgorithm } from "../components/hashAlgorithm";
 
 export function Login() {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('');
+    const [hashedPassword, setHashedPassword] = useState<number | null>(null);
     const [showPassword, setShowPassword] = useState(false);
     const [httpStatusCode, setHttpStatusCode] = useState<number>()
 
@@ -21,6 +23,9 @@ export function Login() {
 
     const getPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
+
+        const calculatedHash = hashAlgorithm(password);
+        setHashedPassword(calculatedHash);
     };
 
     const handleTogglePasswordVisibility = () => {
@@ -29,7 +34,8 @@ export function Login() {
 
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
-        LoginApi(username, password)(e)
+        console.log(hashedPassword)
+        LoginApi(username, hashedPassword)(e)
             .then(async (responseData) => {
                 return responseData
             }).then((sessionId) => {
