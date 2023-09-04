@@ -30,15 +30,18 @@ export const GamePage = () => {
         else if (guessStatus === 1) {
             setMessage(`Too high try again. Attempts: ${attempts}`)
         }
-        else if (guessStatus === 0) {
-            setMessage("we have a winner congratulations")
-            //TODO: Add new screen that shows that you won
-        }
     }
 
     useEffect(() => {
         guessStatusMessage()
     }, [attempts, guessStatus])
+
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          document.getElementById('guessButton')?.click();
+        }
+      };
 
     return guessStatus != 0 ? (
         <Box display='flex' flexDirection='column' alignItems="center" justifyContent="center" sx={{ width: 'fit-content', mt: '150px', mx: 'auto' }}>
@@ -53,16 +56,17 @@ export const GamePage = () => {
                 autoComplete="off"
                 variant="outlined"
                 value={guess}
+                onKeyDown={handleKeyPress}
                 onChange={(event) => setGuess(event.target.value.replace(/[^0-9]/g, ''))} // Remove non-numeric characters
                 sx={{ width: '15em', mt: '16px' }}
             />
-            <Button variant="contained" onClick={sendGuess} sx={{ fontSize: 10, fontFamily: 'QuinqueFive', mt: '16px' }}>
+            <Button id="guessButton" variant="contained" onClick={sendGuess} sx={{ fontSize: 10, fontFamily: 'QuinqueFive', mt: '16px' }}>
                 Guess
             </Button>    
         </Box>
     ): ( 
         <Box display='flex' flexDirection='column' alignItems="center" justifyContent="center" sx={{ width: 'fit-content', mt: '150px', mx: 'auto' }}>
-            <WinningScreen /> 
+            <WinningScreen attempts={attempts!!} guess={guess}/> 
         </Box>
     )
 }
