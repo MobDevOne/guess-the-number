@@ -1,12 +1,11 @@
-import React from 'react';
-import icon from "../pictures/MobDevOne192.png";
+import icon from "../pictures/MobDevOneIcon.png";
 import { Paper, Typography } from "@mui/material";
 
 
-const AboutPage: React.FC = () => {
+const AboutPage = () => {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <Paper elevation={10} sx={{ mt: 6,p: 2, height: "auto", width: "500px", backgroundColor: "rgba(255, 255, 255, 0.8)"}} >
+            <Paper elevation={10} sx={{ mt: 6, p: 2, height: "auto", width: "500px", backgroundColor: "rgba(255, 255, 255, 0.8)"}} >
                 <Typography variant="h4" gutterBottom >
                     About Our "Guess the Number" School Project
                 </Typography>
@@ -28,6 +27,8 @@ const AboutPage: React.FC = () => {
                 </Typography>
                 <Typography variant="body1">
                     We hope you enjoy playing our "Guess the Number" game and find it both entertaining and challenging.
+                    If you want, <br/> you can follow us on <a href="https://github.com/MobDevOne" target="_blank" rel="noreferrer">GitHub</a>
+                    <br/>
                     Thank you for visiting our project's About page!
                 </Typography>
             </Paper>

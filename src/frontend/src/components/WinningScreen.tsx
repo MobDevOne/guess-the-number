@@ -47,13 +47,13 @@ export const WinningScreen = ({guess, attempts}: WinningScreenProps) => {
                     The hidden number was {guess} <br/> and it took you {attempts} <br/> tr{attempts == 1 ? "y" : "ies"} to find it
                 </Typography>
                 <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 3 }}>
-                    Check out the highscores <br/> To see where you ranked between the other players 
+                    Check out the highscores <br/> To see where you ranked between the other players! 
                 </Typography>
                 <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 1 }}>
                     or
                 </Typography>
                 <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 1 }}>
-                    you can play again
+                    you can play again!
                 </Typography>
             </Box>
             <Box display='flex' flexDirection='row' alignItems="center" justifyContent="center">

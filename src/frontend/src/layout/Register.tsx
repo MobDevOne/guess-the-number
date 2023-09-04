@@ -15,6 +15,7 @@ export function Register() {
     const [httpStatusCode, setHttpStatusCode] = useState<number>()
 
     const isButtonDisabled = password === confirmPassword && password != "" && username != "";
+    const isPasswordSame = password === confirmPassword
 
     const navigate = useNavigate()
 
@@ -69,7 +70,14 @@ export function Register() {
                         ),
                     }}
                 />
-                <TextField label="Confirm Password" autoComplete="off" type={showPassword ? 'text' : 'password'} value={confirmPassword} onChange={getConfirmPassword} sx={{ width: '15em' }}
+                <TextField
+                    label="Confirm Password"
+                    helperText={isPasswordSame ? <></> : <span style={{ color: 'red' }}>Passwords are not identical</span>}
+                    autoComplete="off" 
+                    type={showPassword ? 'text' : 'password'}
+                    value={confirmPassword}
+                    onChange={getConfirmPassword}
+                    sx={{ width: '15em' }}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="end">
