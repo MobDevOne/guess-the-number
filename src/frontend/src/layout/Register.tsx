@@ -14,6 +14,8 @@ export function Register() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [httpStatusCode, setHttpStatusCode] = useState<number>()
 
+    const isButtonDisabled = password === confirmPassword && password != "" && username != "";
+
     const navigate = useNavigate()
 
     const getUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,7 +80,7 @@ export function Register() {
                         ),
                     }}
                 />
-                <Button variant="contained" onClick={getUserCredentials} sx={{ textTransform: 'none', fontSize: 10, fontFamily: 'QuinqueFive' }}>
+                <Button variant="contained" onClick={getUserCredentials} disabled={!isButtonDisabled} sx={{ textTransform: 'none', fontSize: 10, fontFamily: 'QuinqueFive' }}>
                     Create Account
                 </Button>
                 <ErrorHandling httpStatusCode={httpStatusCode} />

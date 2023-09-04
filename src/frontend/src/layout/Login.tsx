@@ -15,6 +15,8 @@ export function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [httpStatusCode, setHttpStatusCode] = useState<number>()
 
+    const isButtonDisabled = password == "" || username == "";
+
     const navigate = useNavigate()
 
     const getUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +69,7 @@ export function Login() {
                         ),
                     }}
                 />
-                <Button variant="contained" onClick={getUserCredentials} sx={{ fontFamily: 'QuinqueFive', fontSize: 10 }}>
+                <Button variant="contained" onClick={getUserCredentials} disabled={isButtonDisabled} sx={{ fontFamily: 'QuinqueFive', fontSize: 10 }}>
                     Log in
                 </Button>
                 <Link href="/register" sx={{ fontFamily: 'QuinqueFive', fontSize: 8 }}>
