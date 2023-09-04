@@ -19,7 +19,9 @@ export const WinningScreen = ({guess, attempts}: WinningScreenProps) => {
     const handleGameStart = (e: React.MouseEvent<HTMLButtonElement>) => {
         const sessionId = localStorage.getItem('sessionId')
         GameStartApi(sessionId!!)(e)
-        window.location.reload();
+        .then(async () => {
+            window.location.reload();
+        })
     }
 
     const emojiStyle = {
@@ -33,16 +35,25 @@ export const WinningScreen = ({guess, attempts}: WinningScreenProps) => {
     }
 
     return (
-        <Paper elevation={10} sx={{ p: 2, height: "300px", width: "450px", display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <Paper elevation={10} sx={{ p: 2, height: "350px", width: "450px", display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <Box display='flex' flexDirection='column' alignItems="center" textAlign="center">
                 <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 16 }}>
-                    <span style={flippedEmojiStyle}>🎉</span> Congratulations! <span style={emojiStyle}>🎉</span>
+                    <span style={flippedEmojiStyle}>🎉</span> Congratulations <span style={emojiStyle}>🎉</span>
                 </Typography>
                 <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 14, mt: 2 }}>
                     You guessed the right number
                 </Typography>
                 <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 12, mt: 3 }}>
-                    The hidden number was {guess} <br/> and it took you {attempts} tries to find it
+                    The hidden number was {guess} <br/> and it took you {attempts} <br/> tr{attempts == 1 ? "y" : "ies"} to find it
+                </Typography>
+                <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 3 }}>
+                    Check out the highscores <br/> To see where you ranked between the other players 
+                </Typography>
+                <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 1 }}>
+                    or
+                </Typography>
+                <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 1 }}>
+                    you can play again
                 </Typography>
             </Box>
             <Box display='flex' flexDirection='row' alignItems="center" justifyContent="center">
