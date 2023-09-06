@@ -64,12 +64,6 @@ def get_highscore():
     return jsonify(high_scores=highscores)
 
 
-@app.route("/calculate-highscore", methods=['GET', 'POST'])
-def calc_highscore():
-    data = request.get_json()
-    session_id = data['session_id']
-
-
 @app.route("/logout", methods=['POST'])
 def logout():
     data = request.get_json()
