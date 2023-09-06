@@ -39,11 +39,20 @@ def start_game():
 def guess():
     data = request.get_json()
     session_id = data['session_id']
+    # get user name out of dict for with current session id
+    current_username = session_handler.get_username_for_session(session_id)
+    # get user object corresponding to username
+    current_user = user_manager.get_user(current_username)
     current_random_number_for_session = session_handler.get_random_number_for_session(
         session_id)
     session_guess = data['guess']
     guess_status = game_manager.compare_guess_to_random_number(
         session_guess, current_random_number_for_session)
+    current_tries = session_handler.get_tries(session_id)
+    if guess_status == 0:
+        highscore = game_manager.calculate_score(current_tries)
+        current_user.update_score(highscore)
+
     session_handler.update_tries(session_id)
     current_guess_count = session_handler.get_tries(session_id)
     return jsonify(status=guess_status, guess_count=current_guess_count)
@@ -53,6 +62,12 @@ def guess():
 def get_highscore():
     highscores = user_manager.get_all_highscores()
     return jsonify(high_scores=highscores)
+
+
+@app.route("/calculate-highscore", methods=['GET', 'POST'])
+def calc_highscore():
+    data = request.get_json()
+    session_id = data['session_id']
 
 
 @app.route("/logout", methods=['POST'])
