@@ -11,7 +11,7 @@ import RegisterPage from './layout/RegisterPage';
 import GamePage from './layout/GamePage';
 import HomePage from './layout/HomePage';
 import AboutPage from './layout/AboutPage';
-import HighscorePage from './layout/HighScorePage';
+import HighScorePage from './layout/HighScorePage';
 
 function App() {
 
@@ -32,7 +32,7 @@ function App() {
         <Route path='about' element={<AboutPage />} />
         <Route path='u/:username' element={<HomePage />} />
         <Route path='u/:username/game' element={<GamePage />} />
-        <Route path='u/:username/highscores' element={<HighscorePage />} />
+        <Route path='u/:username/highscores' element={<HighScorePage />} />
       </Routes>
     </Box>
   );
