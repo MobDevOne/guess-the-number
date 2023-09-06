@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify, Response
-from flask_cors import CORS, Response
 from flask_cors import CORS
 from user_manager import UserManager
 from game_manager import GameManager
