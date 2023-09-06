@@ -5,7 +5,7 @@ import {
   Typography,
 } from "@mui/material";
 import icon from "../pictures/MobDevOne192.png";
-import AccountMenu from "../components/AccountMenu";
+import AccountMenu from "./AccountMenu";
 import { useState, useEffect } from "react";
 
 export function Header() {

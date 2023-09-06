@@ -4,7 +4,7 @@ import { HighScoreApi } from "../apis/HighScoresApi";
 import { useNavigate } from "react-router-dom";
 
 
-export function Home() {
+const HomePage = () => {
 
     const username = localStorage.getItem('username')
 
@@ -45,3 +45,5 @@ export function Home() {
        </Box>
     );
 }
+
+export default HomePage;

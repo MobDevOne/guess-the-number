@@ -1,27 +1,42 @@
 import { Box, Button, Paper, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { GameStartApi } from "../apis/GameApi";
+import { HighScoreApi } from "../apis/HighScoresApi";
 
 interface WinningScreenProps {
     guess: string;
     attempts: number;
 }
 
-export const WinningScreen = ({guess, attempts}: WinningScreenProps) => {
-    
+export const WinningScreen = ({ guess, attempts }: WinningScreenProps) => {
+
     const navigate = useNavigate()
     const username = localStorage.getItem('username')
 
-    const handleHighscores = () => {
-        navigate(`/u/${username}/highscores`)
+    const handleHighscores = (e: React.MouseEvent<HTMLButtonElement>) => {
+        HighScoreApi()(e)
+            .then(async (responseData) => {
+                const highscoresData = {
+                    username: responseData.username,
+                    highscore: responseData.score,
+                };
+                // Retrieve existing data from local storage if any
+                const existingDataString = localStorage.getItem('highscoresData');
+                const existingData = existingDataString ? JSON.parse(existingDataString) : [];
+                // Append the new data to the existing data
+                existingData.push(highscoresData);
+                // Store the updated data in local storage
+                localStorage.setItem('highscoresData', JSON.stringify(existingData));
+                navigate(`/u/${responseData.username}/highscores`);
+            })
     }
 
     const handleGameStart = (e: React.MouseEvent<HTMLButtonElement>) => {
         const sessionId = localStorage.getItem('sessionId')
         GameStartApi(sessionId!!)(e)
-        .then(async () => {
-            window.location.reload();
-        })
+            .then(async () => {
+                window.location.reload();
+            })
     }
 
     const emojiStyle = {
@@ -44,10 +59,10 @@ export const WinningScreen = ({guess, attempts}: WinningScreenProps) => {
                     You guessed the right number
                 </Typography>
                 <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 12, mt: 3 }}>
-                    The hidden number was {guess} <br/> and it took you {attempts} <br/> tr{attempts == 1 ? "y" : "ies"} to find it
+                    The hidden number was {guess} <br /> and it took you {attempts} <br /> tr{attempts == 1 ? "y" : "ies"} to find it
                 </Typography>
                 <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 3 }}>
-                    Check out the highscores <br/> To see where you ranked between the other players! 
+                    Check out the highscores <br /> To see where you ranked between the other players!
                 </Typography>
                 <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 1 }}>
                     or

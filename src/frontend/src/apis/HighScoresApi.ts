@@ -11,6 +11,7 @@ export const HighScoreApi = (
     }).then(async (response) => {
         if (response.status >= 400)
             throw response.status.toString()
-        return JSON.parse(await response.text())
+        const responseData = await response.json();
+        return responseData;
     })
 }

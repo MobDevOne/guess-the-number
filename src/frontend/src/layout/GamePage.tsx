@@ -4,7 +4,7 @@ import { GameApi } from "../apis/GameApi";
 import { useEffect, useState } from "react";
 import { WinningScreen } from "../components/WinningScreen";
 
-export const GamePage = () => {
+const GamePage = () => {
 
     const [guess, setGuess] = useState<string>("")
     const [attempts, setAttempts] = useState<number>()
@@ -70,3 +70,5 @@ export const GamePage = () => {
         </Box>
     )
 }
+
+export default GamePage;

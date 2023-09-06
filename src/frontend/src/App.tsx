@@ -1,16 +1,17 @@
 import './App.css';
 import { Box } from '@mui/material';
-import { Header } from './layout/Header';
+import { Header } from './components/Header';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { Login } from './layout/Login';
-import { Register } from './layout/Register';
-import { GamePage } from './layout/GamePage';
-import { HighScorePage } from './layout/HighScorePage';
-import { Home } from './layout/Home';
 import { NavBar } from './components/Navbar';
 import { useEffect } from 'react';
 import { changeBackgroundImage } from './components/ChangeBackground';
-import AboutPage from './layout/About';
+
+import LoginPage from './layout/LoginPage';
+import RegisterPage from './layout/RegisterPage';
+import GamePage from './layout/GamePage';
+import HomePage from './layout/HomePage';
+import AboutPage from './layout/AboutPage';
+import HighscorePage from './layout/HighScorePage';
 
 function App() {
 
@@ -26,12 +27,12 @@ function App() {
       <NavBar />
       <Routes>
         <Route path='*' element={<Navigate to="/login" />} />
-        <Route path='login' element={<Login />} />
-        <Route path='register' element={<Register />} />
+        <Route path='login' element={<LoginPage />} />
+        <Route path='register' element={<RegisterPage />} />
         <Route path='about' element={<AboutPage />} />
-        <Route path='u/:username' element={<Home />} />
+        <Route path='u/:username' element={<HomePage />} />
         <Route path='u/:username/game' element={<GamePage />} />
-        <Route path='u/:username/highscores' element={<HighScorePage />} />
+        <Route path='u/:username/highscores' element={<HighscorePage />} />
       </Routes>
     </Box>
   );
