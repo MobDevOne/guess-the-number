@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify, Response
+from flask_cors import CORS, Response
 from flask_cors import CORS
 from user_manager import UserManager
-from game_logic import GameManager
+from game_manager import GameManager
 from session_handler import SessionHandler
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -12,7 +13,8 @@ def create_new_user():
     user_data = request.get_json()
     user_manager.create_user(user_data['username'], user_data['password'])
     # create session token with user data using Session Handler
-    current_session_id = session_handler.open_new_session(user_data['username'])
+    current_session_id = session_handler.open_new_session(
+        user_data['username'])
     return jsonify(current_session_id)
 
 
@@ -21,7 +23,8 @@ def login_user():
     user_data = request.get_json()
     user_manager.get_user(user_data['username'])
     # create session token with user data using Session Handler
-    current_session_id = session_handler.open_new_session(user_data['username'])
+    current_session_id = session_handler.open_new_session(
+        user_data['username'])
     return jsonify(current_session_id)
 
 
@@ -37,10 +40,20 @@ def start_game():
 def guess():
     data = request.get_json()
     session_id = data['session_id']
-    current_random_number_for_session = session_handler.get_random_number_for_session(session_id)
+    # get user name out of dict for with current session id
+    current_username = session_handler.get_username_for_session(session_id)
+    # get user object corresponding to username
+    current_user = user_manager.get_user(current_username)
+    current_random_number_for_session = session_handler.get_random_number_for_session(
+        session_id)
     session_guess = data['guess']
     guess_status = game_manager.compare_guess_to_random_number(
         session_guess, current_random_number_for_session)
+    current_tries = session_handler.get_tries(session_id)
+    if guess_status == 0:
+        highscore = game_manager.calculate_score(current_tries)
+        current_user.update_score(highscore)
+
     session_handler.update_tries(session_id)
     current_guess_count = session_handler.get_tries(session_id)
     return jsonify(status=guess_status, guess_count=current_guess_count)

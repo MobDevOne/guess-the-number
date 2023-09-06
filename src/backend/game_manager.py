@@ -1,10 +1,4 @@
 import random
-from enum import Enum
-
-# TODO Create GameManager class that has methods for number comparison and data persistence
-# TODO Remove other .py files
-# TODO return JSON objects
-# TODO rename file to class name
 
 
 class GameManager():

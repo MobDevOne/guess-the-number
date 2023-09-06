@@ -1,6 +1,6 @@
 import uuid
 from collections import defaultdict
-from game_logic import GameManager
+from game_manager import GameManager
 
 
 class SessionHandler:
@@ -46,6 +46,10 @@ class SessionHandler:
 
     def get_random_number_for_session(self, session_id):
         return self.sessions.get(session_id, {}).get('random_number', 0)
+
+    # get username for session
+    def get_username_for_session(self, session_id):
+        return self.sessions.get(session_id, {}).get('username', 0)
 
     def update_tries(self, session_id):
         session = self.get_session(session_id)
