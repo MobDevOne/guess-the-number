@@ -1,27 +1,34 @@
+import React, { useState, useEffect } from 'react';
 import { DataGrid, GridColDef, GridRowsProp } from '@mui/x-data-grid';
 import { Box, IconButton } from '@mui/material';
-import { useState } from 'react';
 import RefreshIcon from '@mui/icons-material/Refresh';
 
 const HighScorePage = () => {
+  const [rows, setRows] = useState<GridRowsProp[]>([]);
 
-  const [rows, setRows] = useState<GridRowsProp[]>([])
-
-  const highscoreStorageLoad: () => [] = function () {
-    const rawHighscores = localStorage.getItem("highscoresData");
-    const parsedHighScores = JSON.parse(rawHighscores!!);
+  const highscoreStorageLoad = () => {
+    const rawHighscores = localStorage.getItem('highscoreData');
+    const parsedHighScores = JSON.parse(rawHighscores || '[]');
     const formattedHighscores = parsedHighScores.map((item: any, index: number) => ({
       id: index + 1, // Provide a unique ID for each row
-      score: item[0],
-      name: item[1],
+      highscore: item[0],
+      username: item[1],
     }));
-    setRows(formattedHighscores)
-  }
 
-  const getHighscores = function (event: React.MouseEvent<HTMLButtonElement>) {
-    event.preventDefault()
-    setRows(highscoreStorageLoad())
-  }
+    formattedHighscores.sort((a: any, b: any) => b.highscore - a.highscore);
+
+    setRows(formattedHighscores);
+  };
+
+  useEffect(() => {
+    // Load high scores from localStorage when the component mounts
+    highscoreStorageLoad();
+  }, []); // Empty dependency array ensures this effect runs only once on mount
+
+  const getHighscores = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    highscoreStorageLoad(); // Update the state with the loaded data
+  };
 
   const columns: GridColDef[] = [
     {
@@ -30,7 +37,7 @@ const HighScorePage = () => {
       width: 200,
       hideable: false,
       disableColumnMenu: true,
-      renderCell: (params => { return <span>{params.value}</span> })
+      renderCell: (params) => <span>{params.value}</span>,
     },
     {
       field: 'highscore',
@@ -38,29 +45,31 @@ const HighScorePage = () => {
       width: 200,
       hideable: false,
       disableColumnMenu: true,
-      renderCell: (params => { return <span>{params.value}</span> })
+      renderCell: (params) => <span>{params.value}</span>,
     },
   ];
 
   return (
-    <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center'>
-      <IconButton
-        color="primary"
-        onClick={getHighscores}
-        aria-label="Refresh"
-      >
-        <RefreshIcon />
-      </IconButton>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        isRowSelectable={() => false}
-        getRowId={(row: any) => row.username}
-        autoHeight
-        sx={{ backgroundColor: 'white', opacity: 0.7, mt: '150px' }}
-      />
-    </Box>
+    <Box className="MuiBox-Center" display="flex" flexDirection="column" justifyContent="center" alignItems="center" sx={{ mt: "200px" }}>
+  <div style={{ position: "relative" }}>
+    <IconButton color="primary" onClick={getHighscores} aria-label="Refresh" style={{ position: "absolute", top: 6, right: 6, zIndex: 1 }}>
+      <RefreshIcon />
+    </IconButton>
+    <DataGrid
+      rows={rows}
+      columns={columns}
+      initialState={{
+        pagination: { paginationModel: { pageSize: 5 } },
+      }}
+      pageSizeOptions={[5, 10, 20]}
+      isRowSelectable={() => false}
+      getRowId={(row: any) => row.id}
+      autoHeight
+      sx={{ backgroundColor: 'white', opacity: 0.7 }}
+    />
+  </div>
+</Box>
   );
-}
+};
 
 export default HighScorePage;

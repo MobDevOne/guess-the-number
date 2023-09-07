@@ -17,7 +17,7 @@ export const WinningScreen = ({ guess, attempts }: WinningScreenProps) => {
         HighScoreApi()(e)
             .then(async (highscoreData) => {
                 // Store the data in local storage
-                localStorage.setItem('highscoreData', highscoreData);
+                localStorage.setItem('highscoreData', JSON.stringify(highscoreData));
                 navigate(`/u/${username}/highscores`);
             })
     }
@@ -50,7 +50,7 @@ export const WinningScreen = ({ guess, attempts }: WinningScreenProps) => {
                     You guessed the right number
                 </Typography>
                 <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 12, mt: 3 }}>
-                    The hidden number was {guess} <br /> and it took you {attempts} <br /> tr{attempts == 1 ? "y" : "ies"} to find it
+                    The hidden number was {guess} <br /> and it took you {attempts} <br /> tr{attempts === 1 ? "y" : "ies"} to find it
                 </Typography>
                 <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 3 }}>
                     Check out the highscores <br /> To see where you ranked between the other players!

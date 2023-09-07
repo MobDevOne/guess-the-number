@@ -16,7 +16,7 @@ const RegisterPage = () => {
     const [httpStatusCode, setHttpStatusCode] = useState<number>()
     const [hashedPassword, setHashedPassword] = useState<number | null>(null);
 
-    const isButtonDisabled = password === confirmPassword && password != "" && username != "";
+    const isButtonDisabled = password === confirmPassword && password !== "" && username !== "";
     const isPasswordSame = password === confirmPassword
 
     const navigate = useNavigate()

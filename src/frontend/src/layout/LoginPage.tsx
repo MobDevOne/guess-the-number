@@ -15,7 +15,7 @@ const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [httpStatusCode, setHttpStatusCode] = useState<number>()
 
-    const isButtonDisabled = password == "" || username == "";
+    const isButtonDisabled = password === "" || username === "";
 
     const navigate = useNavigate()
 

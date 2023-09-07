@@ -17,15 +17,14 @@ const HomePage = () => {
         navigate(`./game`);
     } 
 
-    const handleHighScores = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleHighscores = (e: React.MouseEvent<HTMLButtonElement>) => {
         HighScoreApi()(e)
-        .then(async (response) => {
-            return response.statusCode
-        }).catch((statusCode) => {
-            if (statusCode === 200) {
-                navigate(`./highscores`);
-            }
-        })
+            .then(async (highscoreData) => {
+                console.log(highscoreData)
+                // Store the data in local storage
+                localStorage.setItem('highscoreData', JSON.stringify(highscoreData));
+                navigate(`/u/${username}/highscores`);
+            })
     }
 
     return (
@@ -39,7 +38,7 @@ const HomePage = () => {
         <Button variant="contained" onClick={handleGameStart} sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: '16px' }}>
             Play Game
         </Button>
-        <Button variant="contained" onClick={handleHighScores} sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: '16px' }}>
+        <Button variant="contained" onClick={handleHighscores} sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: '16px' }}>
             High Scores
         </Button>
        </Box>

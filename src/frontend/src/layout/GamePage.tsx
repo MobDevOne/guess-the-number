@@ -43,7 +43,7 @@ const GamePage = () => {
         }
       };
 
-    return guessStatus != 0 ? (
+    return guessStatus !== 0 ? (
         <Box display='flex' flexDirection='column' alignItems="center" justifyContent="center" sx={{ width: 'fit-content', mt: '150px', mx: 'auto' }}>
             <Card sx={{ maxWidth: '150px', p: '15px' }}>
                 <Typography sx={{ fontSize: 10, fontFamily: 'QuinqueFive', textAlign: 'center' }}>
