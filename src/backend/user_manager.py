@@ -1,6 +1,7 @@
 import sqlite3
 import uuid
 from user import User
+from werkzeug.security import generate_password_hash
 
 
 class UserManager:
@@ -34,6 +35,7 @@ class UserManager:
     def create_user(self, name, password):
         with self.conn:
             # Check if the username already exists
+            hashed_password = generate_password_hash(password)
             cursor = self.conn.execute('''
                 SELECT id
                 FROM users
@@ -51,14 +53,14 @@ class UserManager:
             self.conn.execute('''
                 INSERT INTO users (id, name, password)
                 VALUES (?, ?, ?)
-            ''', (user_id, name, password))
+            ''', (user_id, name, hashed_password))
 
             self.conn.execute('''
                 INSERT INTO scores (user_id, score)
                 VALUES (?, ?)
             ''', (user_id, 1000))
 
-        return User(self.conn, user_id, name, password)
+        return User(self.conn, user_id, name, hashed_password)
 
     def remove_user(self, name):
         with self.conn:
