@@ -20,7 +20,6 @@ const HomePage = () => {
     const handleHighscores = (e: React.MouseEvent<HTMLButtonElement>) => {
         HighScoreApi()(e)
             .then(async (highscoreData) => {
-                console.log(highscoreData)
                 // Store the data in local storage
                 localStorage.setItem('highscoreData', JSON.stringify(highscoreData));
                 navigate(`/u/${username}/highscores`);
