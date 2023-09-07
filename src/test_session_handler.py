@@ -1,5 +1,6 @@
 import unittest
-from src.backend.session_handler import SessionHandler
+from backend.session_handler import SessionHandler
+
 
 class TestSessionHandler(unittest.TestCase):
 
@@ -52,6 +53,7 @@ class TestSessionHandler(unittest.TestCase):
     def test_generate_session_id(self):
         session_id = self.session_handler._generate_session_id()
         self.assertIsNotNone(session_id)
+
 
 if __name__ == '__main__':
     unittest.main()

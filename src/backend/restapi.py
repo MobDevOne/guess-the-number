@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from user_manager import UserManager
 from game_manager import GameManager
@@ -76,7 +76,7 @@ def logout():
 # @app.route("/delete")
 
 if __name__ == "__main__":
-    database = r"./guess_the_number.db"
+    database = r"database/guess_the_number.db"
     user_manager = UserManager(database)
     game_manager = GameManager()
     session_handler = SessionHandler()

@@ -1,6 +1,6 @@
 import uuid
 from collections import defaultdict
-from game_manager import GameManager
+from backend.game_manager import GameManager
 
 
 class SessionHandler:

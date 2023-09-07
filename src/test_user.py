@@ -1,6 +1,7 @@
 import unittest
 import os
-from src.backend.user_manager import UserManager
+from backend.user_manager import UserManager
+
 
 class TestUser(unittest.TestCase):
     def setUp(self):
@@ -14,10 +15,11 @@ class TestUser(unittest.TestCase):
         os.remove(self.db_name)
 
     def test_score_operations(self):
-            # Test updating and retrieving user scores
-            user = self.user_manager.create_user("TestUser", "testpass")
-            user.update_score(100)
-            self.assertEqual(user.get_score(), 100)
+        # Test updating and retrieving user scores
+        user = self.user_manager.create_user("TestUser", "testpass")
+        user.update_score(100)
+        self.assertEqual(user.get_score(), 100)
+
 
 if __name__ == "__main__":
     unittest.main()
