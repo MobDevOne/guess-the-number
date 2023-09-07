@@ -52,7 +52,9 @@ def guess():
     current_tries = session_handler.get_tries(session_id)
     if guess_status == 0:
         highscore = game_manager.calculate_score(current_tries)
-        current_user.update_score(highscore)
+        a = current_user.get_score()
+        if highscore > a:
+            current_user.update_score(highscore)
 
     session_handler.update_tries(session_id)
     current_guess_count = session_handler.get_tries(session_id)

@@ -40,7 +40,7 @@ export function Header() {
           </a>
           <div style={vertLine} />
           <Typography variant="h6" component="a" href="/" sx={{ textDecoration: "none", fontFamily: "revert", fontWeight: 700, fontSize: "30pt", color: "inherit"}}>
-            {windowWidth < 550 ? "GTN" : "Guess The Number"}
+            {windowWidth < 700 ? "GTN" : "Guess The Number"}
           </Typography>
           <div style={{ flexGrow: 0.98 }} />
           <AccountMenu />
