@@ -43,8 +43,8 @@ const RegisterPage = () => {
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
         RegisterApi(username, hashedPassword)(e)
-            .then(async (responseData) => {
-                return responseData.SessionId
+            .then(async (sessionId) => {
+                return sessionId
             }).then((sessionId) => {
                 localStorage.setItem('username', username);
                 localStorage.setItem('sessionId', sessionId);

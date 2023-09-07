@@ -56,7 +56,7 @@ class UserManager:
             self.conn.execute('''
                 INSERT INTO scores (user_id, score)
                 VALUES (?, ?)
-            ''', (user_id, 1000))
+            ''', (user_id, 0))
 
         return User(self.conn, user_id, name, password)
 

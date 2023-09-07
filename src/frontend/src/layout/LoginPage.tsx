@@ -37,8 +37,8 @@ const LoginPage = () => {
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
         LoginApi(username, hashedPassword)(e)
-            .then(async (responseData) => {
-                return responseData.sessionId
+            .then(async (sessionId) => {
+                return sessionId
             }).then((sessionId) => {
                 localStorage.setItem('username', username);
                 localStorage.setItem('sessionId', sessionId);

@@ -15,19 +15,10 @@ export const WinningScreen = ({ guess, attempts }: WinningScreenProps) => {
 
     const handleHighscores = (e: React.MouseEvent<HTMLButtonElement>) => {
         HighScoreApi()(e)
-            .then(async (responseData) => {
-                const highscoresData = {
-                    username: responseData.username,
-                    highscore: responseData.score,
-                };
-                // Retrieve existing data from local storage if any
-                const existingDataString = localStorage.getItem('highscoresData');
-                const existingData = existingDataString ? JSON.parse(existingDataString) : [];
-                // Append the new data to the existing data
-                existingData.push(highscoresData);
-                // Store the updated data in local storage
-                localStorage.setItem('highscoresData', JSON.stringify(existingData));
-                navigate(`/u/${responseData.username}/highscores`);
+            .then(async (highscoreData) => {
+                // Store the data in local storage
+                localStorage.setItem('highscoreData', highscoreData);
+                navigate(`/u/${username}/highscores`);
             })
     }
 
