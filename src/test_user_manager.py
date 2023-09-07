@@ -1,7 +1,8 @@
 import unittest
 import sqlite3
 import os
-from src.backend.user_manager import UserManager
+from backend.user_manager import UserManager
+
 
 class TestUserManager(unittest.TestCase):
     def setUp(self):
@@ -23,12 +24,11 @@ class TestUserManager(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.user_manager.create_user("TestUser", "anotherpass")
 
-
     def test_remove_user(self):
         # Test removing an existing and a non-existing user
         user = self.user_manager.create_user("TestUser", "testpass")
         self.assertEqual(user.name, "TestUser")
-        
+
         # Remove existing user should work and return True
         self.assertTrue(self.user_manager.remove_user(user.name))
         # Remove non-existing user because removed earlier should raise ValueError
@@ -43,6 +43,7 @@ class TestUserManager(unittest.TestCase):
         except sqlite3.DatabaseError as e:
             # Verify that the DROP TABLE command is not present in the error message
             self.assertNotIn("DROP TABLE", str(e))
+
 
 if __name__ == "__main__":
     unittest.main()

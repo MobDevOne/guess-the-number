@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'ForeignAlien';
   src: local('ForeignAlien'),
-       url('./fonts/ForeignAlien/foreignalien.ttf') format('truetype');
+    url('./fonts/ForeignAlien/foreignalien.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'QuinqueFive';
   src: local('QuinqueFive'),
-       url('./fonts/QuinqueFive/Quinquefive.ttf') format('truetype');
+    url('./fonts/QuinqueFive/Quinquefive.ttf') format('truetype');
 }
 
 
@@ -24,4 +24,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', 'ForeignAlien', 'QuinqueFive',
     monospace;
 }
-

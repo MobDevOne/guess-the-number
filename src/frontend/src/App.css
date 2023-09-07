@@ -10,11 +10,11 @@
   font-family: 'ForeignAlien';
 }
 
-hr{
+hr {
   margin: 1em;
 }
 
-.login{
+.login {
   width: fit-content;
   margin: auto;
 }
@@ -31,4 +31,14 @@ hr{
 .profOak {
   margin-top: -50px;
   margin-left: -250px;
+}
+
+.successText {
+  text-align: center;
+  color: green
+}
+
+.errorText {
+  text-align: center;
+  color: red
 }
