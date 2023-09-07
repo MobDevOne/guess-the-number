@@ -1,9 +1,9 @@
 class User:
-    def __init__(self, conn, user_id, name, hashed_password):
+    def __init__(self, conn, user_id, name, password):
         self.conn = conn
         self.id = user_id
         self.name = name
-        self.hashed_password = hashed_password
+        self.password = password
 
     def update_score(self, score):
         # Update user's score in the 'scores' table
