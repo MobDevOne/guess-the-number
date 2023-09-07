@@ -28,7 +28,7 @@ const RegisterPage = () => {
     const getPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
 
-        const calculatedHash = hashAlgorithm(password);
+        const calculatedHash = hashAlgorithm(password.trim());
         setHashedPassword(calculatedHash);
     };
 
@@ -42,7 +42,7 @@ const RegisterPage = () => {
 
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
-        RegisterApi(username, hashedPassword)(e)
+        RegisterApi(username.trim(), hashedPassword)(e)
             .then(async (sessionId) => {
                 return sessionId
             }).then((sessionId) => {
