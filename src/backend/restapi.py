@@ -14,7 +14,6 @@ def create_new_user():
     # create session token with user data using Session Handler
     current_session_id = session_handler.open_new_session(
         user_data['username'])
-    print(current_session_id, "SessionId")
     return jsonify(current_session_id)
 
 
@@ -22,13 +21,10 @@ def create_new_user():
 def login_user():
     user_data = request.get_json()
     current_password = user_manager.get_password(user_data['username'])
-    print (current_password)
-    print(user_data['password'])
     if current_password == user_data['password']:
         # create session token with user data using Session Handler
         current_session_id = session_handler.open_new_session(
             user_data['username'])
-        print(current_session_id)
         return jsonify(current_session_id)
 
 
@@ -68,7 +64,6 @@ def guess():
 @app.route("/highscores", methods=['GET'])
 def get_highscore():
     highscores = user_manager.get_all_highscores()#
-    print(highscores)
     return highscores
 
 @app.route("/logout", methods=['POST'])

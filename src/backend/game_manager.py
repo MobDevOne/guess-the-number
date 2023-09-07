@@ -27,5 +27,4 @@ class GameManager():
     def calculate_score(self, guess_count):
         # using "max" to compare the guess_count to 0 so if the score is negative (meaning the player took to many attempts) he just gets 0 points
         self.score = max(self.start_score - 2**(guess_count) + 1, 0)
-        print(self.score)
         return self.score
