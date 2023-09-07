@@ -14,7 +14,7 @@ const RegisterPage = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [httpStatusCode, setHttpStatusCode] = useState<number>()
-    const [hashedPassword, setHashedPassword] = useState<number | null>(null);
+    const [hashedPassword, setHashedPassword] = useState('');
 
     const isButtonDisabled = password === confirmPassword && password !== "" && username !== "";
     const isPasswordSame = password === confirmPassword
@@ -42,7 +42,7 @@ const RegisterPage = () => {
 
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
-        RegisterApi(username, hashedPassword)(e)
+        RegisterApi(username, password)(e)
             .then(async (sessionId) => {
                 return sessionId
             }).then((sessionId) => {

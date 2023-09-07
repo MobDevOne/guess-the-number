@@ -11,7 +11,7 @@ const LoginPage = () => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('');
-    const [hashedPassword, setHashedPassword] = useState<number | null>(null);
+    const [hashedPassword, setHashedPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [httpStatusCode, setHttpStatusCode] = useState<number>()
 
@@ -36,7 +36,7 @@ const LoginPage = () => {
 
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
-        LoginApi(username, hashedPassword)(e)
+        LoginApi(username, password)(e)
             .then(async (sessionId) => {
                 return sessionId
             }).then((sessionId) => {

@@ -1,8 +1,8 @@
 import { getBackendUrl } from "./BaseUrl"
 
 export const LoginApi = (
-    username: String,
-    hashedPassword: number | null,
+    username: string,
+    hashedPassword: string,
 ) => async function login(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
     return fetch(`${getBackendUrl()}/login`, {
