@@ -8,12 +8,14 @@ const HighScorePage = () => {
   const [rows, setRows] = useState<GridRowsProp[]>([])
 
   const highscoreStorageLoad: () => [] = function () {
-    const dataString = localStorage.getItem("highscoresData");
-    if (dataString) {
-      return JSON.parse(dataString);
-    } else {
-      return [];
-    }
+    const rawHighscores = localStorage.getItem("highscoresData");
+    const parsedHighScores = JSON.parse(rawHighscores!!);
+    const formattedHighscores = parsedHighScores.map((item: any, index: number) => ({
+      id: index + 1, // Provide a unique ID for each row
+      score: item[0],
+      name: item[1],
+    }));
+    setRows(formattedHighscores)
   }
 
   const getHighscores = function (event: React.MouseEvent<HTMLButtonElement>) {
