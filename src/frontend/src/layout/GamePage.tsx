@@ -1,28 +1,74 @@
-import { Box, Button, Card, Stack, TextField, Typography } from "@mui/material"
+import { Box, Button, Card, TextField, Typography } from "@mui/material"
 import ProfOak from "../pictures/Prof. Oak.png"
+import { GameApi } from "../apis/GameApi";
+import { useEffect, useState } from "react";
+import { WinningScreen } from "../components/WinningScreen";
 
-export const GamePage = () => {
+const GamePage = () => {
 
-    const handleInput = (event: any) => {
-        event.target.value = event.target.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
-    };
+    const [guess, setGuess] = useState<string>("")
+    const [attempts, setAttempts] = useState<number>()
+    const [guessStatus, setGuessStatus] = useState<number>()
+    const [message, setMessage] = useState("What number am i thinking of?")
 
-    return (
+    const sendGuess = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const sessionId = localStorage.getItem('sessionId')
+        const random_number = parseInt(guess!!, 10)
+        GameApi(sessionId!!, random_number!!)(e)
+            .then(async (responseData) => {
+                return responseData
+            }).then((responseData) => {
+                setAttempts(responseData.guess_count)
+                setGuessStatus(responseData.status)
+            })
+    }
+
+    const guessStatusMessage = () => {
+        if (guessStatus === -1) {
+            setMessage(`Too low try again. Attempts: ${attempts}`)
+        }
+        else if (guessStatus === 1) {
+            setMessage(`Too high try again. Attempts: ${attempts}`)
+        }
+    }
+
+    useEffect(() => {
+        guessStatusMessage()
+    }, [attempts, guessStatus])
+
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          document.getElementById('guessButton')?.click();
+        }
+      };
+
+    return guessStatus !== 0 ? (
         <Box display='flex' flexDirection='column' alignItems="center" justifyContent="center" sx={{ width: 'fit-content', mt: '150px', mx: 'auto' }}>
-                <Card sx={{maxWidth: '150px', p: '15px'}}>
-                    <Typography sx={{ fontSize: 10, fontFamily: 'QuinqueFive', textAlign: 'center' }}>
-                       What number am i thinking of? 
-                    </Typography>
-                </Card>
-                <img className="profOak" src={ProfOak} alt="Guess his number" />
-                <TextField label="Enter a number" autoComplete="off" variant="outlined" InputProps={{
-                    inputMode: 'numeric', // Set the input mode to allow only numbers
-                    onInput: handleInput, // Attach the input handler to filter out non-numeric characters
-                }} sx={{ width: '15em', mt: '16px' }}
-                />
-                <Button variant="contained" sx={{ fontSize: 10, fontFamily: 'QuinqueFive', mt: '16px' }}>
-                    Guess
-                </Button>
+            <Card sx={{ maxWidth: '150px', p: '15px' }}>
+                <Typography sx={{ fontSize: 10, fontFamily: 'QuinqueFive', textAlign: 'center' }}>
+                    {message}
+                </Typography>
+            </Card>
+            <img className="profOak" src={ProfOak} alt="Guess his number" />
+            <TextField
+                label="Enter a number"
+                autoComplete="off"
+                variant="outlined"
+                value={guess}
+                onKeyDown={handleKeyPress}
+                onChange={(event) => setGuess(event.target.value.replace(/[^0-9]/g, ''))} // Remove non-numeric characters
+                sx={{ width: '15em', mt: '16px' }}
+            />
+            <Button id="guessButton" variant="contained" onClick={sendGuess} sx={{ fontSize: 10, fontFamily: 'QuinqueFive', mt: '16px' }}>
+                Guess
+            </Button>    
         </Box>
-    );
+    ): ( 
+        <Box display='flex' flexDirection='column' alignItems="center" justifyContent="center" sx={{ width: 'fit-content', mt: '150px', mx: 'auto' }}>
+            <WinningScreen attempts={attempts!!} guess={guess}/> 
+        </Box>
+    )
 }
+
+export default GamePage;

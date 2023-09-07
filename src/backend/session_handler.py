@@ -28,7 +28,7 @@ class SessionHandler:
     def remove_user_sessions(self, username):
         sessions_to_remove = []
         for session_id, session in self.sessions.items():
-            if session["username"] == username:
+            if session['username'] == username:
                 sessions_to_remove.append(session_id)
 
         for session_id in sessions_to_remove:

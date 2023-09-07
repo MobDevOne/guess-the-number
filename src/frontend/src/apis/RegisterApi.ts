@@ -1,13 +1,13 @@
 import { getBackendUrl } from "./BaseUrl"
 
-export const LoginApi = (
+export const RegisterApi = (
     username: String,
     hashedPassword: number | null,
-) => async function login(event: React.MouseEvent<HTMLButtonElement>) {
+) => async function register(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
-    return fetch(`${getBackendUrl()}/login`, {
+    return fetch(`${getBackendUrl()}/register`, {
         headers: { "content-type": "application/json" }, body: JSON.stringify({
-            kind: "user-login",
+            kind: "register",
             username: username,
             password: hashedPassword,
         }),

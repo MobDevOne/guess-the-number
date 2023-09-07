@@ -1,22 +1,25 @@
-import { Box } from '@mui/material';
-import { Header } from './layout/Header';
 import './App.css';
+import { Box } from '@mui/material';
+import { Header } from './components/Header';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { Login } from './layout/Login';
-import { Register } from './layout/Register';
-import { GamePage } from './layout/GamePage';
-import { HighScorePage } from './layout/HighScorePage';
-import { Home } from './layout/Home';
 import { NavBar } from './components/Navbar';
 import { useEffect } from 'react';
+import { changeBackgroundImage } from './components/ChangeBackground';
+
+import LoginPage from './layout/LoginPage';
+import RegisterPage from './layout/RegisterPage';
+import GamePage from './layout/GamePage';
+import HomePage from './layout/HomePage';
+import AboutPage from './layout/AboutPage';
+import HighScorePage from './layout/HighScorePage';
 
 function App() {
 
   const location = useLocation()
 
   useEffect(() => {
-    changeBackgroundImage()
-  }, [location]);
+    changeBackgroundImage(location.pathname)
+  }, [location.pathname]);
 
   return (
     <Box>
@@ -24,36 +27,16 @@ function App() {
       <NavBar />
       <Routes>
         <Route path='*' element={<Navigate to="/login" />} />
-        <Route path='login' element={<Login />} />
-        <Route path='register' element={<Register />} />
-        <Route path='username' element={<Home />} />
-        <Route path='username/game' element={<GamePage />} />
-        <Route path='username/high-scores' element={<HighScorePage />} />
+        <Route path='login' element={<LoginPage />} />
+        <Route path='register' element={<RegisterPage />} />
+        <Route path='about' element={<AboutPage />} />
+        <Route path='u/:username' element={<HomePage />} />
+        <Route path='u/:username/game' element={<GamePage />} />
+        <Route path='u/:username/highscores' element={<HighScorePage />} />
       </Routes>
     </Box>
   );
 }
 
 export default App;
-
-function changeBackgroundImage() {
-  // Get the current URL
-  const currentUrl = window.location.href;
-
-  // Check the URL or any pattern you want and set the background image accordingly
-  if (currentUrl.includes('game') || currentUrl.includes('high-scores')) {
-    document.body.style.background = 'url("/Background Sunset.png")';
-  } else if (currentUrl.includes('username')) {
-    document.body.style.background = 'url("/Background Evening.png")';
-  } else {
-    // Default background image if the URL doesn't match any pattern
-    document.body.style.background = 'url("/Background Day.png")';
-  }
-
-  // Set background properties for best display
-  document.body.style.backgroundSize = 'cover';
-  document.body.style.backgroundRepeat = 'no-repeat';
-  document.body.style.backgroundPosition = 'center';
-  document.body.style.backgroundAttachment = 'fixed';
-}
 

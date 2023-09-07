@@ -15,6 +15,7 @@ def create_new_user():
     # create session token with user data using Session Handler
     current_session_id = session_handler.open_new_session(
         user_data['username'])
+    print(current_session_id, "SessionId")
     return jsonify(current_session_id)
 
 
@@ -55,7 +56,9 @@ def guess():
     current_tries = session_handler.get_tries(session_id)
     if guess_status == 0:
         highscore = game_manager.calculate_score(current_tries)
-        current_user.update_score(highscore)
+        a = current_user.get_score()
+        if highscore > a:
+            current_user.update_score(highscore)
 
     session_handler.update_tries(session_id)
     current_guess_count = session_handler.get_tries(session_id)
@@ -64,9 +67,9 @@ def guess():
 
 @app.route("/highscores", methods=['GET'])
 def get_highscore():
-    highscores = user_manager.get_all_highscores()
-    return jsonify(high_scores=highscores)
-
+    highscores = user_manager.get_all_highscores()#
+    print(highscores)
+    return highscores
 
 @app.route("/logout", methods=['POST'])
 def logout():
@@ -80,7 +83,7 @@ def logout():
 # @app.route("/delete")
 
 if __name__ == "__main__":
-    database = r"guess_the_number.db"
+    database = r"./src/backend/database/guess_the_number.db"
     user_manager = UserManager(database)
     game_manager = GameManager()
     session_handler = SessionHandler()

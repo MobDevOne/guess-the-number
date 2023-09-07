@@ -7,11 +7,14 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
 import { AccountCircle, Info } from '@mui/icons-material';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 export default function AccountMenu() {
 
-    const checkLocation = window.location.pathname.startsWith('/username')
+    const checkLocation = useLocation().pathname.startsWith('/u')
+
+    const navigate = useNavigate()
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -24,11 +27,11 @@ export default function AccountMenu() {
     };
 
     const handleAbout = () => {
-        window.location.href = "/about"
+        navigate('/about')
     }
 
     const handleLogout = () => {
-        window.location.href = "/"
+        navigate('/')
     }
 
     return checkLocation ? (
@@ -57,7 +60,7 @@ export default function AccountMenu() {
             >
                 <MenuItem onClick={handleAbout}>
                     <ListItemIcon>
-                            <Info />                      
+                        <Info />
                     </ListItemIcon>
                     About
                 </MenuItem>
