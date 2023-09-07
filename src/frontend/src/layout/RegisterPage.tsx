@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ErrorHandling } from "../components/ErrorHandling";
 import { RegisterApi } from "../apis/RegisterApi";
 import { useNavigate } from "react-router-dom";
+import { hashAlgorithm } from "../components/hashAlgorithm";
 
 const RegisterPage = () => {
 
@@ -13,6 +14,7 @@ const RegisterPage = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [httpStatusCode, setHttpStatusCode] = useState<number>()
+    const [hashedPassword, setHashedPassword] = useState<number | null>(null);
 
     const isButtonDisabled = password === confirmPassword && password != "" && username != "";
     const isPasswordSame = password === confirmPassword
@@ -25,6 +27,9 @@ const RegisterPage = () => {
 
     const getPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
+
+        const calculatedHash = hashAlgorithm(password);
+        setHashedPassword(calculatedHash);
     };
 
     const getConfirmPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,9 +42,9 @@ const RegisterPage = () => {
 
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
-        RegisterApi(username, password)(e)
-            .then(async (response) => {
-                return response.SessionId
+        RegisterApi(username, hashedPassword)(e)
+            .then(async (responseData) => {
+                return responseData.SessionId
             }).then((sessionId) => {
                 localStorage.setItem('username', username);
                 localStorage.setItem('sessionId', sessionId);

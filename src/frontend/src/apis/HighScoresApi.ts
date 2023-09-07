@@ -4,10 +4,8 @@ export const HighScoreApi = (
 ) => async function highScores(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
     return fetch(`${getBackendUrl()}/highscores`, {
-        headers: { "content-type": "application/json" }, body: JSON.stringify({
-            kind: "highscores",
-        }),
-        method: "POST"
+        headers: { "content-type": "application/json" }, 
+        method: "GET"
     }).then(async (response) => {
         if (response.status >= 400)
             throw response.status.toString()
