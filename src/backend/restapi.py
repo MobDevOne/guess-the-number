@@ -3,7 +3,6 @@ from flask_cors import CORS
 from user_manager import UserManager
 from game_manager import GameManager
 from session_handler import SessionHandler
-from werkzeug.security import check_password_hash
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -23,7 +22,7 @@ def create_new_user():
 def login_user():
     user_data = request.get_json()
     current_user = user_manager.get_user(user_data['username'])
-    if check_password_hash(current_user['password'], user_data['password']):
+    if current_user['password'] == user_data['password']:
         # create session token with user data using Session Handler
         print("Password check funzt")
         current_session_id = session_handler.open_new_session(

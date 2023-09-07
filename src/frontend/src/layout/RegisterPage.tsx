@@ -42,7 +42,7 @@ const RegisterPage = () => {
 
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
-        RegisterApi(username, password)(e)
+        RegisterApi(username, hashedPassword)(e)
             .then(async (sessionId) => {
                 return sessionId
             }).then((sessionId) => {
