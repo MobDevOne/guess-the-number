@@ -35,7 +35,7 @@ class UserManager:
     def create_user(self, name, password):
         with self.conn:
             # Check if the username already exists
-            hashed_password = generate_password_hash(password)
+            # hashed_password = generate_password_hash(password)
             cursor = self.conn.execute('''
                 SELECT id
                 FROM users
@@ -53,14 +53,14 @@ class UserManager:
             self.conn.execute('''
                 INSERT INTO users (id, name, password)
                 VALUES (?, ?, ?)
-            ''', (user_id, name, hashed_password))
+            ''', (user_id, name, password))
 
             self.conn.execute('''
                 INSERT INTO scores (user_id, score)
                 VALUES (?, ?)
             ''', (user_id, 0))
 
-        return User(self.conn, user_id, name, hashed_password)
+        return User(self.conn, user_id, name, password)
 
     def remove_user(self, name):
         with self.conn:
@@ -136,7 +136,7 @@ class UserManager:
             data = cursor.fetchall()
             return data
 
-    def get_hashed_password(self, username):
+    def get_password(self, username):
         with self.conn:
             cursor = self.conn.execute('''
                 SELECT password
@@ -145,12 +145,12 @@ class UserManager:
             ''', (username,))
             row = cursor.fetchone()
             if row:
-                hashed_password = row[0]
-                return hashed_password
+                password = row[0]
+                return password
             else:
                 raise ValueError(f"user {username} does not exist")
 
     def get_user(self, username):
         user_id = self._get_user_id(username)
-        password = self.get_hashed_password(username)
+        password = self.get_password(username)
         return User(self.conn, user_id, username, password)
