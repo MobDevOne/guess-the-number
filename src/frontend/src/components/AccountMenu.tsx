@@ -8,6 +8,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
 import { AccountCircle, Info } from '@mui/icons-material';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { LogoutApi } from '../apis/LogoutApi';
 
 
 export default function AccountMenu() {
@@ -30,8 +31,12 @@ export default function AccountMenu() {
         navigate('/about')
     }
 
-    const handleLogout = () => {
-        navigate('/')
+    const handleLogout = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+        const sessionId = localStorage.getItem('sessionId');
+        LogoutApi(sessionId!!)(e as unknown as React.MouseEvent<HTMLButtonElement, MouseEvent>)
+            .then(async () => {
+                navigate('/');
+            });
     }
 
     return checkLocation ? (

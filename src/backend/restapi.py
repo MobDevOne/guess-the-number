@@ -63,8 +63,9 @@ def guess():
 
 @app.route("/highscores", methods=['GET'])
 def get_highscore():
-    highscores = user_manager.get_all_highscores()#
+    highscores = user_manager.get_all_highscores()
     return highscores
+
 
 @app.route("/logout", methods=['POST'])
 def logout():
@@ -73,6 +74,8 @@ def logout():
     current_session = session_handler.get_session(session_id)
     username = current_session['username']
     session_handler.remove_user_sessions(username)
+    current_session_after_delete = session_handler.get_session(session_id)
+    return "200"
 
 
 # @app.route("/delete")
