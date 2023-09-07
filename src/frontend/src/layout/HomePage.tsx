@@ -9,13 +9,13 @@ const HomePage = () => {
     const username = localStorage.getItem('username')
 
     const navigate = useNavigate()
-    
+
 
     const handleGameStart = (e: React.MouseEvent<HTMLButtonElement>) => {
         const sessionId = localStorage.getItem('sessionId')
         GameStartApi(sessionId!!)(e)
         navigate(`./game`);
-    } 
+    }
 
     const handleHighscores = (e: React.MouseEvent<HTMLButtonElement>) => {
         HighScoreApi()(e)
@@ -27,20 +27,20 @@ const HomePage = () => {
     }
 
     return (
-       <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center'>
-        <Typography sx={{ fontSize: 16, fontFamily: 'QuinqueFive', textAlign: 'center', mt: '50px' }}>
-            Welcome Back {username} <br/> What do you want to do today?
-        </Typography>
-        <Typography sx={{ fontSize: 16, fontFamily: 'QuinqueFive', textAlign: 'center', mt: '50px' }}>
-            Choose your game mode
-        </Typography>
-        <Button variant="contained" onClick={handleGameStart} sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: '16px' }}>
-            Play Game
-        </Button>
-        <Button variant="contained" onClick={handleHighscores} sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: '16px' }}>
-            High Scores
-        </Button>
-       </Box>
+        <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center'>
+            <Typography sx={{ fontSize: 16, fontFamily: 'QuinqueFive', textAlign: 'center', mt: '50px', mb: '50px' }}>
+                Welcome {username} <br /> What do you want to do today?
+            </Typography>
+            <Button variant="contained" onClick={handleGameStart} sx={{ fontFamily: 'QuinqueFive', fontSize: 10 }}>
+                Play a Game
+            </Button>
+            <Typography sx={{ fontSize: 16, fontFamily: 'QuinqueFive', textAlign: 'center', mt: '16px' }}>
+                or
+            </Typography>
+            <Button variant="contained" onClick={handleHighscores} sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: '16px' }}>
+                view Highscores
+            </Button>
+        </Box>
     );
 }
 
