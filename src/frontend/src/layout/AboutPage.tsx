@@ -6,7 +6,7 @@ import { Button, Paper, Typography } from "@mui/material";
 const AboutPage = () => {
 
     const navigate = useNavigate()
-    const username = localStorage.getItem('username')
+    const username = sessionStorage.getItem('username')
 
     const handleNavigation = () => {
         navigate(`/u/${username}`);

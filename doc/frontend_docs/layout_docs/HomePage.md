@@ -26,7 +26,7 @@ const HomePage = () => {
 ## State Variables
 
 ```javascript
-const username = localStorage.getItem('username')
+const username = sessionStorage.getItem('username')
 ```
 
 - The `username` variable retrieves the username from local storage to display a personalized welcome message.

@@ -16,7 +16,7 @@ export const GameStartApi = (
 export const GameApi = (
     session_id: String,
     guess: number,
-) => async function gameStart(event: React.MouseEvent<HTMLButtonElement>) {
+) => async function gameGuess(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
     return fetch(`${getBackendUrl()}/game-guess`, {
         headers: { "content-type": "application/json" }, body: JSON.stringify({

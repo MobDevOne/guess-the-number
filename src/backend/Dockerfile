@@ -1,8 +1,12 @@
 FROM python:slim
 
-COPY ./../../requirements.txt /requirements.txt
-COPY src/backend/*.py /backend
+COPY requirements.txt /requirements.txt
+COPY ./*.py /src/
+
+RUN mkdir /src/database
 
 RUN pip install -r /requirements.txt
 
-CMD python /backend/restapi.py
+WORKDIR /src
+
+CMD python /src/restapi.py

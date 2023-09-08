@@ -1,29 +1,22 @@
 import { Box, Button, Typography } from "@mui/material";
 import { GameStartApi } from "../apis/GameApi";
-import { HighScoreApi } from "../apis/HighScoresApi";
 import { useNavigate } from "react-router-dom";
 
 
 const HomePage = () => {
 
-    const username = localStorage.getItem('username')
-
+    const username = sessionStorage.getItem('username')
     const navigate = useNavigate()
 
 
     const handleGameStart = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const sessionId = localStorage.getItem('sessionId')
+        const sessionId = sessionStorage.getItem('sessionId')
         GameStartApi(sessionId!!)(e)
         navigate(`./game`);
     }
 
     const handleHighscores = (e: React.MouseEvent<HTMLButtonElement>) => {
-        HighScoreApi()(e)
-            .then(async (highscoreData) => {
-                // Store the data in local storage
-                localStorage.setItem('highscoreData', JSON.stringify(highscoreData));
-                navigate(`/u/${username}/highscores`);
-            })
+        navigate(`/u/${username}/highscores`);     
     }
 
     return (

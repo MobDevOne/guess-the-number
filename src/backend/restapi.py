@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from user_manager import UserManager
@@ -74,15 +75,19 @@ def logout():
     current_session = session_handler.get_session(session_id)
     username = current_session['username']
     session_handler.remove_user_sessions(username)
-    current_session_after_delete = session_handler.get_session(session_id)
     return "200"
 
 
 # @app.route("/delete")
 
 if __name__ == "__main__":
-    database = r"./src/backend/database/guess_the_number.db"
+    database = r"./database/guess_the_number.db"
+    if not os.path.isfile(database):
+    # If it doesn't exist, create the database directory if needed
+        db_dir = os.path.dirname(database)
+        if not os.path.exists(db_dir):
+            os.makedirs(db_dir)
     user_manager = UserManager(database)
     game_manager = GameManager()
     session_handler = SessionHandler()
-    app.run()
+    app.run(host='0.0.0.0')
