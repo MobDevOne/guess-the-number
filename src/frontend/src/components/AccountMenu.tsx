@@ -32,10 +32,12 @@ export default function AccountMenu() {
     }
 
     const handleLogout = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-        const sessionId = localStorage.getItem('sessionId');
+        const sessionId = sessionStorage.getItem('sessionId');
         LogoutApi(sessionId!!)(e as unknown as React.MouseEvent<HTMLButtonElement, MouseEvent>)
             .then(async () => {
                 navigate('/');
+                sessionStorage.removeItem('username')
+                sessionStorage.removeItem('sessionId')
             });
     }
 

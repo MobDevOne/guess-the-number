@@ -12,7 +12,7 @@ const GamePage = () => {
     const [message, setMessage] = useState("What number am i thinking of?")
 
     const sendGuess = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const sessionId = localStorage.getItem('sessionId')
+        const sessionId = sessionStorage.getItem('sessionId')
         const random_number = parseInt(guess!!, 10)
         GameApi(sessionId!!, random_number!!)(e)
             .then(async (responseData) => {

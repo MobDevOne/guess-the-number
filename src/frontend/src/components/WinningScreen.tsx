@@ -1,7 +1,7 @@
 import { Box, Button, Paper, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { GameStartApi } from "../apis/GameApi";
-import { HighScoreApi } from "../apis/HighScoresApi";
+
 
 interface WinningScreenProps {
     guess: string;
@@ -11,19 +11,14 @@ interface WinningScreenProps {
 export const WinningScreen = ({ guess, attempts }: WinningScreenProps) => {
 
     const navigate = useNavigate()
-    const username = localStorage.getItem('username')
+    const username = sessionStorage.getItem('username')
 
     const handleHighscores = (e: React.MouseEvent<HTMLButtonElement>) => {
-        HighScoreApi()(e)
-            .then(async (highscoreData) => {
-                // Store the data in local storage
-                localStorage.setItem('highscoreData', JSON.stringify(highscoreData));
-                navigate(`/u/${username}/highscores`);
-            })
+        navigate(`/u/${username}/highscores`);
     }
 
     const handleGameStart = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const sessionId = localStorage.getItem('sessionId')
+        const sessionId = sessionStorage.getItem('sessionId')
         GameStartApi(sessionId!!)(e)
             .then(async () => {
                 window.location.reload();

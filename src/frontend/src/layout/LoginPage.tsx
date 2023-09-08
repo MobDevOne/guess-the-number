@@ -40,8 +40,8 @@ const LoginPage = () => {
             .then(async (sessionId) => {
                 return sessionId
             }).then((sessionId) => {
-                localStorage.setItem('username', username);
-                localStorage.setItem('sessionId', sessionId);
+                sessionStorage.setItem('username', username);
+                sessionStorage.setItem('sessionId', sessionId);
                 setUsername('')
                 setPassword('')
                 navigate(`/u/${username}`)

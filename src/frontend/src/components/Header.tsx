@@ -11,6 +11,8 @@ import { useState, useEffect } from "react";
 export function Header() {
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const username = sessionStorage.getItem('username')
+  const isLoggedIn = sessionStorage.getItem('username') !== null
 
   useEffect(() => {
     const handleResize = () => {
@@ -39,7 +41,7 @@ export function Header() {
             <img className="icon" src={icon} alt="icon" />
           </a>
           <div style={vertLine} />
-          <Typography variant="h6" component="a" href="/" sx={{ textDecoration: "none", fontFamily: "revert", fontWeight: 700, fontSize: "30pt", color: "inherit"}}>
+          <Typography variant="h6" component="a" href={isLoggedIn ? `/u/${username}` : "/"} sx={{ textDecoration: "none", fontFamily: "revert", fontWeight: 700, fontSize: "30pt", color: "inherit"}}>
             {windowWidth < 700 ? "GTN" : "Guess The Number"}
           </Typography>
           <div style={{ flexGrow: 0.98 }} />
