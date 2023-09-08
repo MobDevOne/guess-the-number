@@ -1,7 +1,7 @@
 FROM python:slim
 
 COPY requirements.txt /requirements.txt
-COPY src/backend/*.py /src/
+COPY ./*.py /src/
 
 RUN mkdir /src/database
 

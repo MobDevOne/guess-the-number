@@ -1,10 +1,12 @@
 #!/bin/sh
-
+cd src/backend 
 
 docker build -t gitea.sldw.de/public/guess_backend .
 docker push gitea.sldw.de/public/guess_backend
 
-cd src/frontend 
+cd ../
+
+cd frontend 
 
 npm run build
 docker build -t gitea.sldw.de/public/guess_frontend .
