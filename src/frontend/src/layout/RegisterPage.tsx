@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, IconButton, InputAdornment, Link, Stack, TextField, Typography } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useState } from "react";
@@ -111,6 +111,9 @@ const RegisterPage = () => {
                 <Button id="register" variant="contained" onClick={getUserCredentials} disabled={!isButtonDisabled} sx={{ textTransform: 'none', fontSize: 10, fontFamily: 'QuinqueFive' }}>
                     Create Account
                 </Button>
+                <Link href="/login" sx={{ fontFamily: 'QuinqueFive', fontSize: 8 }}>
+                    Already have an account? log in
+                </Link>
                 <ErrorHandling httpStatusCode={httpStatusCode} />
             </Stack>
         </Box>

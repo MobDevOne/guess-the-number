@@ -22,7 +22,7 @@ function App() {
     changeBackgroundImage(location.pathname)
     if (username === null && location.pathname.startsWith('/u/')) {
       navigate("/login")
-    } else if (username !== null && !location.pathname.startsWith('/about')) {
+    } else if (username !== null && (!location.pathname.startsWith('/u/') && !location.pathname.startsWith('/about'))) {
       navigate(`/u/${username}`)
     }
   }, [location.pathname]);

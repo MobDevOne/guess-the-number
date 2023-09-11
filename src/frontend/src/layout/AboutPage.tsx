@@ -20,7 +20,7 @@ const AboutPage = () => {
                 <Typography variant="body1">
                     Key features of our project include:
                     <ul>
-                        <li>Random number generation within a specified range.</li>
+                        <li>Random number generation within the range of 1-100.</li>
                         <li>User-friendly interface with clear instructions.</li>
                         <li>Feedback to let players know if their guess is too high or too low.</li>
                         <li>Score tracking to record the number of attempts taken to guess the correct number.</li>
