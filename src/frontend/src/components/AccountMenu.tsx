@@ -13,7 +13,7 @@ import { LogoutApi } from '../apis/LogoutApi';
 
 export default function AccountMenu() {
 
-    const checkLocation = useLocation().pathname.startsWith('/u' )
+    const checkLocation = useLocation().pathname.startsWith('/u')
 
     const navigate = useNavigate()
 
@@ -41,7 +41,7 @@ export default function AccountMenu() {
             });
     }
 
-    return (
+    return checkLocation ? (
         <>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                 <Tooltip title="Account settings">
@@ -71,17 +71,17 @@ export default function AccountMenu() {
                     </ListItemIcon>
                     About
                 </MenuItem>
-                {checkLocation ?
                 <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
                         <Logout fontSize="small" />
                     </ListItemIcon>
                     Logout
                 </MenuItem>
-                :
-                <>
-                </>}
             </Menu>
         </>
+    ) : (
+        <IconButton title="About" onClick={handleAbout}>
+            <Info sx={{ width: 32, height: 32, color: 'white' }} />
+        </IconButton>
     );
 }

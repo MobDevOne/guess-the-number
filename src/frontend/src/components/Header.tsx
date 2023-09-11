@@ -37,7 +37,7 @@ export function Header() {
     <AppBar position="static" className="header" sx={{ bgcolor: "#262626" }}>
       <Stack sx={{ ml: "8px" }}>
         <Toolbar disableGutters>
-          <a href="https://github.com/MobDevOne" target="_blank" rel="noreferrer">
+          <a href="https://github.com/MobDevOne" target="_blank" rel="noreferrer" style={{height: "50px", width: "50px"}}>
             <img className="icon" src={icon} alt="icon" />
           </a>
           <div style={vertLine} />
