@@ -34,6 +34,13 @@ const LoginPage = () => {
         setShowPassword(!showPassword);
     };
 
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          document.getElementById('login')?.click();
+        }
+      };
+
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
         LoginApi(username.trim(), hashedPassword)(e)
@@ -56,8 +63,8 @@ const LoginPage = () => {
                 Welcome to "Guess The Number" <br /> by MobDevOne
             </Typography>
             <Stack className="login" direction="column" spacing={"16px"} sx={{ width: 'fit-content', mt: '75px', alignItems: 'center' }}>
-                <TextField label="Username" autoComplete="off" value={username} onChange={getUsername} sx={{ width: '15em' }} />
-                <TextField label="Password" autoComplete="off" type={showPassword ? 'text' : 'password'} value={password} onChange={getPassword} sx={{ width: '15em' }}
+                <TextField label="Username" autoComplete="off" value={username} onKeyDown={handleKeyPress} onChange={getUsername} sx={{ width: '15em' }} />
+                <TextField label="Password" autoComplete="off" type={showPassword ? 'text' : 'password'} value={password} onKeyDown={handleKeyPress} onChange={getPassword} sx={{ width: '15em' }}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="end">
@@ -68,7 +75,7 @@ const LoginPage = () => {
                         ),
                     }}
                 />
-                <Button variant="contained" onClick={getUserCredentials} disabled={isButtonDisabled} sx={{ fontFamily: 'QuinqueFive', fontSize: 10 }}>
+                <Button id="login" variant="contained" onClick={getUserCredentials} disabled={isButtonDisabled} sx={{ fontFamily: 'QuinqueFive', fontSize: 10 }}>
                     Log in
                 </Button>
                 <Link href="/register" sx={{ fontFamily: 'QuinqueFive', fontSize: 8 }}>
