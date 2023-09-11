@@ -1,16 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import icon from "../pictures/MobDevOneIcon.png";
-import { Button, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 
 
 const AboutPage = () => {
-
-    const navigate = useNavigate()
-    const username = sessionStorage.getItem('username')
-
-    const handleNavigation = () => {
-        navigate(`/u/${username}`);
-    };
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -40,11 +32,7 @@ const AboutPage = () => {
                     <br />
                     Thank you for visiting our project's About page!
                 </Typography>
-
             </Paper>
-            <Button variant="contained" onClick={handleNavigation} sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 2 }}>
-                Go to Home
-            </Button>
         </div>
     );
 };

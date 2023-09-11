@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     changeBackgroundImage(location.pathname)
-    if (username === null) {
+    if (username === null && location.pathname != "/about") {
       navigate("/login")
     }
   }, [location.pathname]);
