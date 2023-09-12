@@ -80,13 +80,13 @@ The "Guess the Number" game is all about having fun while testing your deduction
 ## About
 
 About Our "Guess the Number" School Project
-Welcome to the About page of our school project, "Guess the Number," by our Team icon MobDevOne.
+Welcome to the About page of our school project, "Guess the Number," by our Team MobDevOne.
 
 This project was developed as part of our school curriculum to demonstrate our programming and problem-solving skills. 
 The "Guess the Number" game is a classic and fun game that challenges players to guess a randomly generated number within a certain range.
 
 Key features of our project include:
-- Random number generation within a specified range.
+- Random number generation within the range of 1 - 100.
 - User-friendly interface with clear instructions.
 - Feedback to let players know if their guess is too high or too low.
 - Score tracking to record the number of attempts taken to guess the correct number.
