@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, IconButton, InputAdornment, Link, Stack, TextField, Typography } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useState } from "react";
@@ -40,6 +40,13 @@ const RegisterPage = () => {
         setShowPassword(!showPassword);
     };
 
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.getElementById('register')?.click();
+        }
+    };
+
     const getUserCredentials = (e: React.MouseEvent<HTMLButtonElement>) => {
         setHttpStatusCode(undefined)
         RegisterApi(username.trim(), hashedPassword)(e)
@@ -63,8 +70,15 @@ const RegisterPage = () => {
                 Create your account!
             </Typography>
             <Stack className="login" direction="column" spacing={"16px"} sx={{ width: 'fit-content', mt: '75px', alignItems: 'center' }}>
-                <TextField label="Username" autoComplete="off" variant="outlined" value={username} onChange={getUsername} sx={{ width: '15em' }} />
-                <TextField label="Password" autoComplete="off" type={showPassword ? 'text' : 'password'} value={password} onChange={getPassword} sx={{ width: '15em' }}
+                <TextField label="Username" autoComplete="off" variant="outlined" value={username} onKeyDown={handleKeyPress} onChange={getUsername} sx={{ width: '15em' }} />
+                <TextField
+                    label="Password"
+                    autoComplete="off"
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onKeyDown={handleKeyPress}
+                    onChange={getPassword}
+                    sx={{ width: '15em' }}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="end">
@@ -78,9 +92,10 @@ const RegisterPage = () => {
                 <TextField
                     label="Confirm Password"
                     helperText={isPasswordSame ? <></> : <span style={{ color: 'red' }}>Passwords are not identical</span>}
-                    autoComplete="off" 
+                    autoComplete="off"
                     type={showPassword ? 'text' : 'password'}
                     value={confirmPassword}
+                    onKeyDown={handleKeyPress}
                     onChange={getConfirmPassword}
                     sx={{ width: '15em' }}
                     InputProps={{
@@ -93,9 +108,12 @@ const RegisterPage = () => {
                         ),
                     }}
                 />
-                <Button variant="contained" onClick={getUserCredentials} disabled={!isButtonDisabled} sx={{ textTransform: 'none', fontSize: 10, fontFamily: 'QuinqueFive' }}>
+                <Button id="register" variant="contained" onClick={getUserCredentials} disabled={!isButtonDisabled} sx={{ textTransform: 'none', fontSize: 10, fontFamily: 'QuinqueFive' }}>
                     Create Account
                 </Button>
+                <Link href="/login" sx={{ fontFamily: 'QuinqueFive', fontSize: 8 }}>
+                    Already have an account? log in
+                </Link>
                 <ErrorHandling httpStatusCode={httpStatusCode} />
             </Stack>
         </Box>

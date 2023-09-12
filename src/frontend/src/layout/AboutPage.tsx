@@ -1,16 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import icon from "../pictures/MobDevOneIcon.png";
-import { Button, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 
 
 const AboutPage = () => {
-
-    const navigate = useNavigate()
-    const username = sessionStorage.getItem('username')
-
-    const handleNavigation = () => {
-        navigate(`/u/${username}`);
-    };
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -28,7 +20,7 @@ const AboutPage = () => {
                 <Typography variant="body1">
                     Key features of our project include:
                     <ul>
-                        <li>Random number generation within a specified range.</li>
+                        <li>Random number generation within the range of 1-100.</li>
                         <li>User-friendly interface with clear instructions.</li>
                         <li>Feedback to let players know if their guess is too high or too low.</li>
                         <li>Score tracking to record the number of attempts taken to guess the correct number.</li>
@@ -40,11 +32,7 @@ const AboutPage = () => {
                     <br />
                     Thank you for visiting our project's About page!
                 </Typography>
-
             </Paper>
-            <Button variant="contained" onClick={handleNavigation} sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 2 }}>
-                Go to Home
-            </Button>
         </div>
     );
 };

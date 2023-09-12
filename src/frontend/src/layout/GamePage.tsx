@@ -21,6 +21,7 @@ const GamePage = () => {
                 setAttempts(responseData.guess_count)
                 setGuessStatus(responseData.status)
             })
+        setGuess('')
     }
 
     const guessStatusMessage = () => {
@@ -38,10 +39,10 @@ const GamePage = () => {
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
         if (event.key === 'Enter') {
-          event.preventDefault();
-          document.getElementById('guessButton')?.click();
+            event.preventDefault();
+            document.getElementById('guessButton')?.click();
         }
-      };
+    };
 
     return guessStatus !== 0 ? (
         <Box display='flex' flexDirection='column' alignItems="center" justifyContent="center" sx={{ width: 'fit-content', mt: '150px', mx: 'auto' }}>
@@ -62,11 +63,11 @@ const GamePage = () => {
             />
             <Button id="guessButton" variant="contained" onClick={sendGuess} sx={{ fontSize: 10, fontFamily: 'QuinqueFive', mt: '16px' }}>
                 Guess
-            </Button>    
+            </Button>
         </Box>
-    ): ( 
+    ) : (
         <Box display='flex' flexDirection='column' alignItems="center" justifyContent="center" sx={{ width: 'fit-content', mt: '150px', mx: 'auto' }}>
-            <WinningScreen attempts={attempts!!} guess={guess}/> 
+            <WinningScreen attempts={attempts!!} guess={guess} />
         </Box>
     )
 }

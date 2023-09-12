@@ -80,6 +80,8 @@ export default function AccountMenu() {
             </Menu>
         </>
     ) : (
-        <></>
+        <IconButton title="About" onClick={handleAbout}>
+            <Info sx={{ width: 32, height: 32, color: 'white' }} />
+        </IconButton>
     );
 }

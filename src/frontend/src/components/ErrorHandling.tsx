@@ -2,7 +2,7 @@ function Success() {
   return <p className="successText">Success</p>
 }
 function Error() {
-  return <p className="errorText">There seemed to have been a problem, try again</p>
+  return <p className="errorText">There seems to have been a problem, try again</p>
 }
 
 type ErrorHandlingProps = { httpStatusCode?: number }

@@ -1,7 +1,7 @@
 import './App.css';
 import { Box } from '@mui/material';
 import { Header } from './components/Header';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { changeBackgroundImage } from './components/ChangeBackground';
 
@@ -15,9 +15,16 @@ import HighScorePage from './layout/HighScorePage';
 function App() {
 
   const location = useLocation()
+  const username = sessionStorage.getItem('username')
+  const navigate = useNavigate()
 
   useEffect(() => {
     changeBackgroundImage(location.pathname)
+    if (username === null && location.pathname.startsWith('/u/')) {
+      navigate("/login")
+    } else if (username !== null && (!location.pathname.startsWith('/u/') && !location.pathname.startsWith('/about'))) {
+      navigate(`/u/${username}`)
+    }
   }, [location.pathname]);
 
   return (
