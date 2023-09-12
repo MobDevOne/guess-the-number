@@ -6,7 +6,8 @@ import { WinningScreen } from "../components/WinningScreen";
 
 const GamePage = () => {
 
-    const [guess, setGuess] = useState<string>("")
+    const [guess, setGuess] = useState("")
+    const [numberToGuess, setNumberToGuess] = useState("")
     const [attempts, setAttempts] = useState<number>()
     const [guessStatus, setGuessStatus] = useState<number>()
     const [message, setMessage] = useState("What number am i thinking of?")
@@ -21,6 +22,7 @@ const GamePage = () => {
                 setAttempts(responseData.guess_count)
                 setGuessStatus(responseData.status)
             })
+        setNumberToGuess(guess)
         setGuess('')
     }
 
@@ -67,7 +69,7 @@ const GamePage = () => {
         </Box>
     ) : (
         <Box display='flex' flexDirection='column' alignItems="center" justifyContent="center" sx={{ width: 'fit-content', mt: '150px', mx: 'auto' }}>
-            <WinningScreen attempts={attempts!!} guess={guess} />
+            <WinningScreen attempts={attempts!!} guess={numberToGuess} />
         </Box>
     )
 }
