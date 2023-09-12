@@ -22,7 +22,7 @@ const RegisterPage = () => {
     const navigate = useNavigate()
 
     const getUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setUsername(event.target.value);
+        setUsername(event.target.value.replace(/[^a-zA-Z0-9-_]/g, ''));
     };
 
     const getPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
