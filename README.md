@@ -3,7 +3,7 @@
 
 Welcome to the Guess-The-Number game project by Team MobDevOne! This game is designed as a school project to test your number-guessing skills. The computer will randomly select a number between 0 and 100, and your task is to guess that number.
 
-![Gameplay Demo](ingame.jpeg) <!-- Replace with a gameplay demo GIF or image -->
+![Gameplay Demo](./fast-ingame.gif)
 
 ## Gameplay Rules
 
