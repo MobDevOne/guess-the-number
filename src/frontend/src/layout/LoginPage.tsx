@@ -20,7 +20,7 @@ const LoginPage = () => {
     const navigate = useNavigate()
 
     const getUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setUsername(event.target.value);
+        setUsername(event.target.value.replace(/[^a-zA-Z0-9-_]/g, ''));
     };
 
     const getPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +63,12 @@ const LoginPage = () => {
                 Welcome to "Guess The Number" <br /> by MobDevOne
             </Typography>
             <Stack className="login" direction="column" spacing={"16px"} sx={{ width: 'fit-content', mt: '75px', alignItems: 'center' }}>
-                <TextField label="Username" autoComplete="off" value={username} onKeyDown={handleKeyPress} onChange={getUsername} sx={{ width: '15em' }} />
+                <TextField 
+                label="Username" 
+                autoComplete="off" 
+                value={username} 
+                onKeyDown={handleKeyPress} 
+                onChange={getUsername} sx={{ width: '15em' }} />
                 <TextField label="Password" autoComplete="off" type={showPassword ? 'text' : 'password'} value={password} onKeyDown={handleKeyPress} onChange={getPassword} sx={{ width: '15em' }}
                     InputProps={{
                         endAdornment: (
