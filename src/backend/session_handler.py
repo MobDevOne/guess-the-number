@@ -1,5 +1,7 @@
 import uuid
 from collections import defaultdict
+
+from flask import Response
 from game_manager import GameManager
 
 
@@ -27,10 +29,13 @@ class SessionHandler:
 
     def remove_user_sessions(self, username):
         sessions_to_remove = []
+       
         for session_id, session in self.sessions.items():
-            if session['username'] == username:
-                sessions_to_remove.append(session_id)
-
+            try:
+                if session['username'] == username:
+                    sessions_to_remove.append(session_id)
+            except:
+                return Response(f"Unautheticated Session found", status=511, mimetype='application/json')
         for session_id in sessions_to_remove:
             self._remove_session(session_id)
 
