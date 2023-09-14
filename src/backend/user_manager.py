@@ -1,8 +1,6 @@
 import sqlite3
 import uuid
 from user import User
-from werkzeug.security import generate_password_hash
-
 
 class UserManager:
     def __init__(self, db_name):
