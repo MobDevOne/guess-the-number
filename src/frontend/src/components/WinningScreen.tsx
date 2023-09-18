@@ -36,24 +36,24 @@ export const WinningScreen = ({ guess, attempts }: WinningScreenProps) => {
     }
 
     return (
-        <Paper elevation={10} sx={{ p: 2, height: "350px", width: "450px", display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <Paper elevation={10} sx={{ p: 2, minHeight: "300", minWidth: "300px", display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <Box display='flex' flexDirection='column' alignItems="center" textAlign="center">
                 <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 16 }}>
                     <span style={flippedEmojiStyle}>🎉</span> Congratulations <span style={emojiStyle}>🎉</span>
                 </Typography>
-                <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 14, mt: 2 }}>
+                <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: "1.5vh", mt: 2 }}>
                     You guessed the right number
                 </Typography>
-                <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 12, mt: 3 }}>
+                <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: "1.2vh", mt: 3 }}>
                     The hidden number was {guess} <br /> and it took you {attempts} <br /> tr{attempts === 1 ? "y" : "ies"} to find it
                 </Typography>
-                <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 3 }}>
+                <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: "1.0vh", mt: 3 }}>
                     Check out the highscores <br /> To see where you ranked between the other players!
                 </Typography>
-                <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 1 }}>
+                <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: "1.0vh", mt: 1 }}>
                     or
                 </Typography>
-                <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: 10, mt: 1 }}>
+                <Typography sx={{ fontFamily: 'QuinqueFive', fontSize: "1.0vh", mt: 1 }}>
                     you can play again!
                 </Typography>
             </Box>

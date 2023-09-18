@@ -59,7 +59,7 @@ const LoginPage = () => {
 
     return (
         <Box >
-            <Typography textAlign="center" sx={{ mt: '75px', fontFamily: 'QuinqueFive', fontSize: 20 }}>
+            <Typography textAlign="center" sx={{ mt: '5vh', fontFamily: 'QuinqueFive', fontSize: 20 }}>
                 Welcome to "Guess The Number" <br /> by MobDevOne
             </Typography>
             <Stack className="login" direction="column" spacing={"16px"} sx={{ width: 'fit-content', mt: '75px', alignItems: 'center' }}>

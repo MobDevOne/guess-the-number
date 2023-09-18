@@ -28,21 +28,21 @@ export function Header() {
 
   const vertLine = {
     borderLeft: "4px solid white",
-    height: "46px",
+    height: "6vh",
     marginLeft: "8px",
     marginRight: "8px",
   };
 
   return (
     <AppBar position="static" className="header" sx={{ bgcolor: "#262626" }}>
-      <Stack sx={{ ml: "8px" }}>
+      <Stack sx={{ ml: "8px", height: "5vh"}}>
         <Toolbar disableGutters>
-          <a href="https://github.com/MobDevOne" target="_blank" rel="noreferrer" style={{height: "50px", width: "50px"}}>
+          <a href="https://github.com/MobDevOne" target="_blank" rel="noreferrer">
             <img className="icon" src={icon} alt="icon" />
           </a>
           <div style={vertLine} />
-          <Typography variant="h6" component="a" href={isLoggedIn ? `/u/${username}` : "/"} sx={{ textDecoration: "none", fontFamily: "revert", fontWeight: 700, fontSize: "30pt", color: "inherit"}}>
-            {windowWidth < 700 ? "GTN" : "Guess The Number"}
+          <Typography variant="h6" component="a" href={isLoggedIn ? `/u/${username}` : "/"} sx={{ textDecoration: "none", fontFamily: "revert", fontWeight: 700, fontSize: "4vh", color: "inherit"}}>
+            {windowWidth < 300 ? "GTN" : "Guess The Number"}
           </Typography>
           <div style={{ flexGrow: 0.98 }} />
           <AccountMenu />
