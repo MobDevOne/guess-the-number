@@ -53,7 +53,9 @@ const GamePage = () => {
                     {message}
                 </Typography>
             </Card>
-            <img className="profOak" src={ProfOak} alt="Guess his number" />
+            <a className="profOak" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" target="_blank" rel="noreferrer">
+                <img src={ProfOak} alt="Guess his number" />
+            </a>
             <TextField
                 label="Enter a number"
                 autoComplete="off"
